@@ -1,0 +1,28 @@
+
+
+html,
+body {
+  background: #212121;
+  height: 100%;
+}
+
+/* optional if you ever render in a standalone container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* main scramble text */
+.text-highlight {
+  font-weight: 100;
+  font-size: 28px;
+  color: #fafafa;
+}
+
+/* temporary scrambled characters */
+.dud {
+  color: #757575;
+}
