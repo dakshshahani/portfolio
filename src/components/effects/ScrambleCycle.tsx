@@ -4,7 +4,7 @@ import "./scrambles.css";
 
 export function ScrambleCycle({
   phrases,
-  delay = 1200,
+  delay = 2000,
 }: {
   phrases: string[];
   delay?: number;
