@@ -49,7 +49,7 @@ export function Navbar() {
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 className="text-lg font-medium hover:text-primary"
-              >
+                legacyBehavior>
                 {item}
               </Link>
             ))}
