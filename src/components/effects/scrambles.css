@@ -19,10 +19,10 @@ body {
 .text-highlight {
   font-weight: 100;
   font-size: 28px;
-  color: #fafafa;
+  color: #0f0f0f;
 }
 
 /* temporary scrambled characters */
 .dud {
-  color: #757575;
+  color: #1a465b;
 }

@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 bg-background/90 backdrop-blur border-b">
-      <div className="container mx-auto flex justify-between items-center px-4 py-3">
+    <header className="sticky top-0 z-50 bg-background/90 backdrop-blur shadow-sm">
+      <div className="mx-auto flex justify-around items-center px-4 py-3">
         <h1 className="font-semibold text-xl">Daksh Shahani</h1>
 
         {/* Desktop Navigation */}

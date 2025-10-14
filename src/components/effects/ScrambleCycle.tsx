@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import "./scramble.css";
+import "./scrambles.css";
 
 export function ScrambleCycle({
   phrases,
