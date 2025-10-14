@@ -8,10 +8,11 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="py-24 px-4 flex flex-col items-center text-center gap-8 bg-background"
+      className="min-h-screen px-4 flex justify-around items-center gap-8 bg-background"
     >
+        <div className="flex flex-col gap-8">
       {/* ---------- Name & Intro ---------- */}
-      <h1 className="text-5xl font-bold">
+      <h1 className="text-6xl font-bold">
         Hi, I’m <span className="text-primary">Daksh Shahani</span>
       </h1>
 
@@ -32,22 +33,19 @@ export function Hero() {
           />
         </span>
       </h2>
+      </div>
+    
 
       {/* ---------- About line / CTA ---------- */}
+      <div className="flex flex-col items-center text-center gap-8">
       <p className="text-muted-foreground max-w-xl">
-        I love building web experiences and creating digital content that combines code, motion, and design.
+        I'm a third-year Computer Science student at the University of British Columbia with a passion for creating seamless web experiences. I love working with JavaScript frameworks like React and Express.js to build efficient, engaging, and user-centered applications.
       </p>
-
-      <div className="flex flex-wrap gap-2 justify-center">
-        <Badge>TypeScript</Badge>
-        <Badge>Next.js</Badge>
-        <Badge>TailwindCSS</Badge>
-        <Badge>shadcn/ui</Badge>
-      </div>
-
       <Button asChild size="lg" className="mt-6">
         <a href="#projects">View My Work</a>
       </Button>
+      </div>
+
     </section>
   );
 }
