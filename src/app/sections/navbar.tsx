@@ -10,11 +10,21 @@ import Link from "next/link";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function Navbar() {
+  const { scrollY } = useScroll();
+
+  // Turn scroll position into opacity (or you can replace with translateY for slide‑in)
+  const opacity = useTransform(scrollY, [0, 80], [0, 1]);
+  const y = useTransform(scrollY, [0, 80], [-40, 0]); // subtle slide
+
   return (
-    <header className="sticky top-0 z-50 bg-background/90 backdrop-blur shadow-sm">
-      <div className="mx-auto flex justify-around items-center px-4 py-3">
+    <motion.header
+      style={{ opacity, y }}
+      className="fixed top-0 z-50 bg-background/90 backdrop-blur shadow-sm min-w-full"
+    >
+      <div className="mx-auto flex justify-around items-center px-4 py-3 transition-colors duration-300">
         <h1 className="font-semibold text-xl">Daksh Shahani</h1>
 
         {/* Desktop Navigation */}
@@ -22,11 +32,7 @@ export function Navbar() {
           <NavigationMenuList className="flex gap-6">
             {["Home", "Projects", "Experience", "Contact"].map((item) => (
               <NavigationMenuItem key={item}>
-                <Link
-                  href={`#${item.toLowerCase()}`}
-                  passHref
-                  legacyBehavior
-                >
+                <Link href={`#${item.toLowerCase()}`}>
                   <NavigationMenuLink className="text-sm font-medium hover:text-primary transition-colors">
                     {item}
                   </NavigationMenuLink>
@@ -43,19 +49,22 @@ export function Navbar() {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="flex flex-col items-start gap-4 p-6">
+          <SheetContent
+            side="right"
+            className="flex flex-col items-start gap-4 p-6"
+          >
             {["Home", "Projects", "Experience", "Contact"].map((item) => (
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 className="text-lg font-medium hover:text-primary"
-                legacyBehavior>
+              >
                 {item}
               </Link>
             ))}
           </SheetContent>
         </Sheet>
       </div>
-    </header>
+    </motion.header>
   );
 }

@@ -3,46 +3,25 @@
 import { Button } from "@/components/ui/button";
 import { ScrambleCycle } from "@/components/effects/ScrambleCycle";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
 
 export function Hero() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"], // start fading out when hero scrolls away
-  });
-
-  // Fade opacity from 1→0 as user scrolls
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   return (
     <>
-      {/* ----------- Background Video ----------- */}
-      <motion.video
-        style={{ opacity }}
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        <source src="/hero.mp4" type="video/mp4" />
-      </motion.video>
       {/* ---------- Desktop Hero ---------- */}
       <section
         id="home"
-        className="hidden md:flex min-h-screen px-4 justify-around items-center gap-8 bg-background"
+        className="hidden md:flex min-h-screen px-4 items-center justify-around gap-8 bg-background z-10"
       >
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-y-8 text-left">
           {/* ---------- Name & Intro ---------- */}
           <h1 className="text-6xl font-bold">
-            Hi, I’m <span className="text-primary">Daksh</span>
+            Hi, I’m <span className="text-primary">Daksh 👨‍💻</span>
           </h1>
 
           {/* ---------- Scramble Text ---------- */}
-          <h2 className="text-2xl sm:text-3xl font-light">
+          <h2 className="text-sm sm:text-2xl font-light">
             I’m a{" "}
-            <span className="text-primary font-sans">
+            <span className="text-sm sm:text-2xl text-primary font-sans">
               <ScrambleCycle
                 phrases={[
                   "3rd Year CS Student",
@@ -94,8 +73,9 @@ export function Hero() {
       </section>
 
       {/* ---------- Mobile Hero ---------- */}
-      <section className="flex md:hidden flex-col justify-center items-center text-center min-h-screen px-6 gap-8 bg-background">
-        {/* ---------- Name & Intro (Smaller Text) ---------- */}
+
+      <section className="flex md:hidden flex-col justify-center items-center bg-transparent text-center min-h-screen px-6 gap-8 relative z-10">
+        ̦ {/* ---------- Name & Intro (Smaller Text) ---------- */}
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl font-bold leading-tight">
             Hi, I’m <span className="text-primary">Daksh Shahani</span>
@@ -118,7 +98,6 @@ export function Hero() {
             </span>
           </h2>
         </div>
-
         {/* ---------- About Text / CTA ---------- */}
         <p className="text-muted-foreground max-w-sm text-base leading-relaxed">
           I'm a third-year Computer Science student at UBC passionate about

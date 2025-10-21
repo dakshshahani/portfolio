@@ -15,7 +15,7 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="py-24 px-4 flex flex-col items-center text-center gap-8"
+      className="py-24 px-4 flex flex-col items-center text-center gap-8 bg-background"
     >
       <h3 className="text-3xl font-semibold">Experience</h3>
       <div className="max-w-3xl w-full flex flex-col gap-6 text-left">

@@ -7,13 +7,13 @@ export function Projects() {
       title: "Portfolio Website",
       desc: "Personal website built with Next.js 15 and shadcn/ui.",
       link: "#",
-      btn: "View Code",
+      btn: "View Project",
     },
     {
-      title: "E‑Commerce UI",
-      desc: "Storefront demo built with Next.js API routes + TailwindCSS.",
-      link: "#",
-      btn: "Live Demo",
+      title: "ClarityVR",
+      desc: "AI-based virtual reality therapist reducing mental health stigma through immersive and accessible therapy sessions.",
+      link: "https://github.com/aircon2/clarityVR",
+      btn: "View Project",
     },
     {
       title: "Chat App",
@@ -26,7 +26,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-24 px-4 bg-muted/50 flex flex-col items-center"
+      className="py-24 px-4 bg-background flex flex-col items-center"
     >
       <h3 className="text-3xl font-semibold mb-8">Projects</h3>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
