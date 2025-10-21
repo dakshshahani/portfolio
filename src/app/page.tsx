@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <main className="flex-1 bg-background">
-        <CursorFollower />
+        {/* <CursorFollower /> */}
         <Navbar />
         <Hero />
         <About />
