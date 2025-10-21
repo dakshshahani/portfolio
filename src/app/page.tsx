@@ -8,6 +8,7 @@ import { Experience } from "@/app/sections/experience";
 import { Contact } from "@/app/sections/contact";
 import { Footer } from "@/app/sections/footer";
 import { About } from "@/app/sections/about";
+import { CursorFollower } from "@/components/effects/cursorfollower";
 
 export default function HomePage() {
   const { scrollY } = useScroll();
@@ -16,6 +17,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <main className="flex-1 bg-background">
+        <CursorFollower />
         <Navbar />
         <Hero />
         <About />
