@@ -8,11 +8,8 @@ import { Experience } from "@/app/sections/experience";
 import { Contact } from "@/app/sections/contact";
 import { Footer } from "@/app/sections/footer";
 import { About } from "@/app/sections/about";
+import { ShaderBackground} from "@/components/ShaderBackground";
 
-// Dynamically load ShaderScene to prevent SSR WebGL issues
-const ShaderScene = dynamic(() => import("@/components/ShaderScene"), {
-  ssr: false,
-});
 
 export default function HomePage() {
   return (
@@ -20,6 +17,7 @@ export default function HomePage() {
       {/* 🎨 Background Shader */}
       <div className="pointer-events-none fixed inset-0 ">
         {/* <ShaderScene /> */}
+        <ShaderBackground/>
       </div>
 
       {/* 🔝 Site Content */}
