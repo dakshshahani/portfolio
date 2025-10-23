@@ -24,12 +24,12 @@ export function Projects() {
     {
       title: "Space Guide",
       desc: "Browser-based educational tool built with HTML, CSS, and JavaScript that enables interactive exploration of our solar system. Features dynamic navigation and responsive design for an engaging learning experience across devices.",
-      link: "https://github.com/aircon2/space-guide",
+      link: "https://devpost.com/software/space-guide",
       btn: "View Project",
     },
   ];
 
-  // Dynamically set column count based on divisibility
+
   const projectCount = projects.length;
   const colCount = projectCount % 4 === 0 ? 4 : projectCount % 3 === 0 ? 3 : 3; // fallback to 3 if neither divides evenly
 
@@ -40,9 +40,8 @@ export function Projects() {
     >
       <h3 className="text-3xl font-semibold mb-8">Projects</h3>
 
-      {/* Dynamically inject the Tailwind grid class */}
       <div
-        className={`grid sm:grid-cols-2 lg:grid-cols-${colCount} gap-6 max-w-5xl`}
+        className={`grid sm:grid-cols-2 md:px-10 lg:grid-cols-${colCount} gap-6 max-w-5xl`}
       >
         {projects.map((p) => (
           <Card key={p.title} className="text-left flex flex-col">

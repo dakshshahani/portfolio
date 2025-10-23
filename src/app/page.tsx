@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import dynamic from "next/dynamic";
 import { Navbar } from "@/app/sections/navbar";
 import { Hero } from "@/app/sections/hero";
 import { Projects } from "@/app/sections/projects";
@@ -8,16 +8,22 @@ import { Experience } from "@/app/sections/experience";
 import { Contact } from "@/app/sections/contact";
 import { Footer } from "@/app/sections/footer";
 import { About } from "@/app/sections/about";
-import { CursorFollower } from "@/components/effects/cursorfollower";
+
+// Dynamically load ShaderScene to prevent SSR WebGL issues
+const ShaderScene = dynamic(() => import("@/components/ShaderScene"), {
+  ssr: false,
+});
 
 export default function HomePage() {
-  const { scrollY } = useScroll();
-  const videoOpacity = useTransform(scrollY, [1, 1000], [1, 0]);
-
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="relative min-h-screen bg-background flex flex-col overflow-hidden">
+      {/* 🎨 Background Shader */}
+      <div className="pointer-events-none fixed inset-0 ">
+        {/* <ShaderScene /> */}
+      </div>
+
+      {/* 🔝 Site Content */}
       <main className="flex-1 bg-background">
-        {/* <CursorFollower /> */}
         <Navbar />
         <Hero />
         <About />
