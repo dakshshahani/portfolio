@@ -2,7 +2,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="py-24 bg-background flex flex-col md:flex-row items-center justify-center gap-20"
+      className="py-24 bg-transparent flex flex-col md:flex-row items-center justify-center gap-20"
     >
       {/* Left side: Image */}
       <div className="w-48 h-48 md:w-64 md:h-64 overflow-hidden rounded-4xl shadow-lg">
@@ -14,7 +14,7 @@ export function About() {
       </div>
 
       {/* Right side: Text content */}
-      <div className="text-left md:text-left bg-background">
+      <div className="text-left md:text-left bg-transparent">
         <h2 className="text-4xl font-bold mb-2">
           Hey, I'm <span className="text-primary">Daksh</span>!
         </h2>

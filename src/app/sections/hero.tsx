@@ -10,7 +10,7 @@ export function Hero() {
       {/* ---------- Desktop Hero ---------- */}
       <section
         id="home"
-        className="hidden md:flex min-h-screen px-4 items-center justify-around gap-8 bg-background z-10"
+        className="hidden md:flex min-h-screen px-4 items-center justify-around gap-8 bg-transparent z-10"
       >
         <div className="flex flex-col gap-y-8 text-left">
           {/* ---------- Name & Intro ---------- */}
