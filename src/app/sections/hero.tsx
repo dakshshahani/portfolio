@@ -75,7 +75,7 @@ export function Hero() {
       {/* ---------- Mobile Hero ---------- */}
 
       <section className="flex md:hidden flex-col justify-center items-center bg-transparent text-center min-h-screen px-6 gap-8 relative z-10">
-        ̦ {/* ---------- Name & Intro (Smaller Text) ---------- */}
+         {/* ---------- Name & Intro (Smaller Text) ---------- */}
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl font-bold leading-tight">
             Hi, I’m <span className="text-primary">Daksh Shahani</span>
