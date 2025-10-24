@@ -35,7 +35,7 @@ export function About() {
         <h3 className="py-2 text-2xl">I also like...</h3>
         <ul className="space-y-1 text-md pl-2">
             <li>🏐 Volleyball</li>
-            <li>🍣 Salmon Oshi</li>
+            <li>🏎️ F1</li>
             <li>🍵 Matcha</li>
         </ul>
       </div>
