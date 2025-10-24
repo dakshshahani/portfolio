@@ -25,7 +25,12 @@ export function Navbar() {
       className="fixed top-0 z-50 bg-background/90 backdrop-blur shadow-sm min-w-full"
     >
       <div className="mx-auto flex justify-around items-center px-4 py-3 transition-colors duration-300">
-        <h1 className="font-semibold text-xl">Daksh Shahani</h1>
+        <div className="flex items-center gap-2">
+            <Link href="#home">
+              <img src="/favicon.ico" alt="Logo" className="w-9 h-9" />
+            </Link>
+          {/* <h1 className="font-semibold text-xl">Daksh Shahani</h1> */}
+        </div>
 
         {/* Desktop Navigation */}
         <NavigationMenu className="hidden md:block">
