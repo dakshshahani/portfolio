@@ -1,34 +1,38 @@
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export function Projects() {
   const projects = [
     {
-      title: "Portfolio Website",
-      desc: "Personal website built with Next.js 15 and shadcn/ui.",
-      link: "https://github.com/dakshshahani/portfolio",
+      title: "Weblink",
+      desc: "WebLink is an intelligent bookmarking system that transforms your saved links into a visual, interconnected knowledge map, making it effortless to organize, discover, and explore related content. It turns scattered web resources into a dynamic network for seamless navigation and insight.",
+      link: "https://github.com/dakshshahani/weblink",
       btn: "View Project",
+      badges:
+        "Next.js, Supabase, OpenAI, D3.js, TypeScript, React, TailwindCSS",
     },
     {
       title: "ClarityVR",
       desc: "AI-based virtual reality therapist reducing mental health stigma through immersive and accessible therapy sessions.",
       link: "https://github.com/aircon2/clarityVR",
       btn: "View Project",
+      badges: "Unity, C#, OpenAI, ElevenLabs, Express.js, React",
     },
     {
       title: "AExpressions",
       desc: "Web-based tool that generates After Effects expressions from user prompts or AE files, powered by React, TypeScript, and FastAPI. Features built-in expressions and AI integration to streamline motion design workflows for creators.",
       link: "https://github.com/dakshshahani/aexpressions",
       btn: "View Project",
+      badges: "React, TypeScript, OpenAPI, MongoDB",
     },
     {
       title: "Space Guide",
       desc: "Browser-based educational tool built with HTML, CSS, and JavaScript that enables interactive exploration of our solar system. Features dynamic navigation and responsive design for an engaging learning experience across devices.",
       link: "https://devpost.com/software/space-guide",
       btn: "View Project",
+      badges: "HTML, CSS, JavaScript",
     },
   ];
-
 
   const projectCount = projects.length;
   const colCount = projectCount % 4 === 0 ? 4 : projectCount % 3 === 0 ? 3 : 3; // fallback to 3 if neither divides evenly
@@ -44,15 +48,14 @@ export function Projects() {
         className={`grid sm:grid-cols-2 md:px-10 lg:grid-cols-${colCount} gap-6 max-w-5xl`}
       >
         {projects.map((p) => (
-          <Card key={p.title} className="text-left flex flex-col">
+          <Card className="flex flex-col h-full">
             <CardHeader>
-              <h4 className="font-semibold text-lg">{p.title}</h4>
+              <CardTitle>{p.title}</CardTitle>
             </CardHeader>
 
             <CardContent className="flex flex-col flex-1">
-              <p className="text-muted-foreground flex-1">{p.desc}</p>
-
-              <Button asChild className="mt-4 w-full">
+              <p className="pb-2">{p.desc}</p>
+              <Button variant="secondary" className="mt-autoœœ">
                 <a href={p.link}>{p.btn}</a>
               </Button>
             </CardContent>
