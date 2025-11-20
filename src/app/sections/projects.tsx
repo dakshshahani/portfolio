@@ -55,7 +55,7 @@ export function Projects() {
 
             <CardContent className="flex flex-col flex-1">
               <p className="pb-2">{p.desc}</p>
-              <Button variant="secondary" className="mt-autoœœ">
+              <Button variant="default" className="mt-auto">
                 <a href={p.link}>{p.btn}</a>
               </Button>
             </CardContent>
