@@ -53,7 +53,7 @@ export function Projects() {
       <h3 className="text-3xl font-semibold mb-8">Projects</h3>
 
       <div
-        className={`grid sm:grid-cols-${colCount} md:px-10 lg:grid-cols-${colCount} gap-6 max-w-screen-xl mx-auto`}
+        className={`grid sm:grid-cols-2 md:px-10 lg:grid-cols-${colCount} gap-6 max-w-5xl`}
       >
         {projects.map((p) => (
           <Card className="flex flex-col h-full">
