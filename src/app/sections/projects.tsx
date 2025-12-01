@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 export function Projects() {
   const projects = [
     {
+      title: "komo",
+      desc: "Komo is a unified search platform that connects all your enterprise and personal workspaces, enabling seamless access to information across multiple tools. It delivers instant results with intelligent summaries and AI‑driven context, turning scattered data into a single source of truth for faster discovery and clarity.",
+      link: "https://github.com/aircon2/komo",
+      btn: "View Project",
+      badges: "Next.js, Gemini, TypeScript, React, TailwindCSS, SQLite, Redux",
+    },
+    {
       title: "Weblink",
       desc: "WebLink is an intelligent bookmarking system that transforms your saved links into a visual, interconnected knowledge map, making it effortless to organize, discover, and explore related content. It turns scattered web resources into a dynamic network for seamless navigation and insight.",
       link: "https://github.com/dakshshahani/weblink",
@@ -36,6 +43,7 @@ export function Projects() {
 
   const projectCount = projects.length;
   const colCount = projectCount % 4 === 0 ? 4 : projectCount % 3 === 0 ? 3 : 3; // fallback to 3 if neither divides evenly
+  console.log(colCount);
 
   return (
     <section
@@ -45,7 +53,7 @@ export function Projects() {
       <h3 className="text-3xl font-semibold mb-8">Projects</h3>
 
       <div
-        className={`grid sm:grid-cols-2 md:px-10 lg:grid-cols-${colCount} gap-6 max-w-5xl`}
+        className={`grid sm:grid-cols-${colCount} md:px-10 lg:grid-cols-${colCount} gap-6 max-w-screen-xl mx-auto`}
       >
         {projects.map((p) => (
           <Card className="flex flex-col h-full">

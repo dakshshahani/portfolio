@@ -3,8 +3,8 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 export function Experience() {
   const experiences = [
     {
-      title: "Media Specialist - nwPlus",
-      desc: "Developed and executed digital media campaigns to boost engagement for major hackathons, including nwHacks, Hack-Camp, and cmd-f, reaching over 1,000 participants annually. \nCollaborated with cross-functional teams to create promotional content, manage social media channels, and enhancebrand visibility, contributing to the success of Western Canada’s largest student-run hackathons.",
+      title: "Software Engineer, Media Specialist - nwPlus",
+      desc: "Built and optimized React-Firebase features across multiple web apps, improving load times by 35% and cutting post-release bugs by 40% through efficient component design and Firestore query tuning.\nDelivered hands-on Web Dev & API workshops to 400+ hackers, demystifying tech stacks for project builds.\nLed media campaigns across social channels to boost engagement, driving 1,000+ participant engagements.",
     },
     {
       title: "Lead Organizer - TEDx",
