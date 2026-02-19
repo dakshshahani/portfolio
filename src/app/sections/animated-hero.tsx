@@ -6,7 +6,7 @@ import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern
 export function InteractiveGridPatternDemo() {
   return (
     <section className="bg-background relative flex min-h-screen w-full items-center justify-center overflow-hidden">
-      <div className="relative h-[70vmin] w-[70vmin]">
+      <div className="relative h-[90vmin] w-[100vmin]">
         <InteractiveGridPattern
           className={cn(
             "border-0",
