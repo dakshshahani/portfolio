@@ -90,14 +90,16 @@ export function SmoothCursor({
   },
 }: SmoothCursorProps) {
   const [isMoving, setIsMoving] = useState(false)
+  const [hasPosition, setHasPosition] = useState(false)
   const lastMousePos = useRef<Position>({ x: 0, y: 0 })
   const velocity = useRef<Position>({ x: 0, y: 0 })
   const lastUpdateTime = useRef(Date.now())
   const previousAngle = useRef(0)
   const accumulatedRotation = useRef(0)
+  const hasMoved = useRef(false)
 
-  const cursorX = useSpring(0, springConfig)
-  const cursorY = useSpring(0, springConfig)
+  const cursorX = useSpring(0, { ...springConfig, stiffness: springConfig.stiffness * 3 })
+  const cursorY = useSpring(0, { ...springConfig, stiffness: springConfig.stiffness * 3 })
   const rotation = useSpring(0, {
     ...springConfig,
     damping: 60,
@@ -127,6 +129,17 @@ export function SmoothCursor({
 
     const smoothMouseMove = (e: MouseEvent) => {
       const currentPos = { x: e.clientX, y: e.clientY }
+      
+      // On first mouse move, set position directly without animation
+      if (!hasMoved.current) {
+        cursorX.jump(currentPos.x)
+        cursorY.jump(currentPos.y)
+        hasMoved.current = true
+        setHasPosition(true)
+        lastMousePos.current = currentPos
+        return
+      }
+      
       updateVelocity(currentPos)
 
       const speed = Math.sqrt(
@@ -170,15 +183,18 @@ export function SmoothCursor({
       })
     }
 
-    document.body.style.cursor = "none"
     window.addEventListener("mousemove", throttledMouseMove)
 
     return () => {
       window.removeEventListener("mousemove", throttledMouseMove)
-      document.body.style.cursor = "auto"
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [cursorX, cursorY, rotation, scale])
+
+  // Don't render until we have initial position
+  if (!hasPosition) {
+    return null
+  }
 
   return (
     <motion.div
