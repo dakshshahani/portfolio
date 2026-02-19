@@ -29,8 +29,8 @@ export function InteractiveGridPatternDemo() {
       <div className="relative hidden md:block h-[90vmin] w-[100vmin]">
         <InteractiveGridPattern
           squares={[30,30]}
-          rowOffset={-3}
-          colOffset={-2}
+          rowOffset={-5}
+          colOffset={-3}
           className={cn(
             "border-0",
             "absolute inset-0 h-full w-full",

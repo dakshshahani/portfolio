@@ -122,6 +122,34 @@
   }
 }
 
+/* Hide default cursor on large screens (desktop) - custom cursor takes over */
+@media (min-width: 1024px) {
+  *,
+  *::before,
+  *::after,
+  body,
+  html,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [role="link"],
+  label {
+    cursor: none !important;
+  }
+}
+
+/* Show default cursor on touch devices and small screens */
+@media (max-width: 1023px), (hover: none), (pointer: coarse) {
+  *,
+  *::before,
+  *::after {
+    cursor: auto !important;
+  }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
