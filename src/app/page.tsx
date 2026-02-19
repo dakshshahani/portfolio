@@ -23,7 +23,7 @@ export default function HomePage() {
         <DockDemo />
         <main className="flex-1">
           <InteractiveGridPatternDemo />
-          <Hero />
+          {/* <Hero /> */}
           <About />
           <Projects />
           <Experience />

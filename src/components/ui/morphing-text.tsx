@@ -1,21 +1,31 @@
 "use client"
 
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
 
 const defaultMorphTime = 1.5
 const defaultCooldownTime = 0.5
 
-const useMorphingText = (
-  texts: string[],
-  morphTime: number,
+interface UseMorphingTextOptions {
+  texts: string[]
+  morphTime: number
   cooldownTime: number
-) => {
+  isInView: boolean
+}
+
+const useMorphingText = ({
+  texts,
+  morphTime,
+  cooldownTime,
+  isInView,
+}: UseMorphingTextOptions) => {
   const textIndexRef = useRef(0)
   const morphRef = useRef(0)
   const cooldownRef = useRef(0)
   const timeRef = useRef(new Date())
+  const hasStartedRef = useRef(false)
+  const startTimeRef = useRef<Date | null>(null)
 
   const text1Ref = useRef<HTMLSpanElement>(null)
   const text2Ref = useRef<HTMLSpanElement>(null)
@@ -45,7 +55,7 @@ const useMorphingText = (
     morphRef.current -= cooldownRef.current
     cooldownRef.current = 0
 
-     let fraction = morphRef.current / morphTime
+    let fraction = morphRef.current / morphTime
 
     if (fraction > 1) {
       cooldownRef.current = cooldownTime
@@ -76,7 +86,19 @@ const useMorphingText = (
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate)
 
+      // Only animate if in view
+      if (!isInView) return
+
       const newTime = new Date()
+      
+      // Initialize start time on first visible frame
+      if (!hasStartedRef.current) {
+        hasStartedRef.current = true
+        startTimeRef.current = newTime
+        timeRef.current = newTime
+        return
+      }
+
       const dt = (newTime.getTime() - timeRef.current.getTime()) / 1000
       timeRef.current = newTime
 
@@ -90,7 +112,7 @@ const useMorphingText = (
     return () => {
       cancelAnimationFrame(animationFrameId)
     }
-  }, [doMorph, doCooldown])
+  }, [doMorph, doCooldown, isInView])
 
   return { text1Ref, text2Ref }
 }
@@ -103,16 +125,18 @@ interface MorphingTextProps {
   animationDelay?: number
 }
 
-const Texts: React.FC<MorphingTextProps> = ({
+const Texts: React.FC<MorphingTextProps & { isInView: boolean }> = ({
   texts,
   morphTime,
   cooldownTime,
+  isInView,
 }) => {
-  const { text1Ref, text2Ref } = useMorphingText(
+  const { text1Ref, text2Ref } = useMorphingText({
     texts,
-    morphTime ?? defaultMorphTime,
-    cooldownTime ?? defaultCooldownTime
-  )
+    morphTime: morphTime ?? defaultMorphTime,
+    cooldownTime: cooldownTime ?? defaultCooldownTime,
+    isInView,
+  })
   return (
     <>
       <span
@@ -156,19 +180,52 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
   morphTime,
   cooldownTime,
   animationDelay = 0,
-}) => (
-  <div
-    className={cn(
-      "relative font-sans font-bold [filter:url(#threshold)_blur(0.6px)]",
-      className
-    )}
-    style={{
-      opacity: 0,
-      animation: `fadeIn 0.5s ease forwards`,
-      animationDelay: `${animationDelay}s`,
-    }}
-  >
-    <Texts texts={texts} morphTime={morphTime} cooldownTime={cooldownTime} />
-    <SvgFilters />
-  </div>
-)
+}) => {
+  const [isInView, setIsInView] = useState(false)
+  const [showAnimation, setShowAnimation] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          // Delay the fade-in animation
+          setTimeout(() => {
+            setShowAnimation(true)
+          }, animationDelay * 1000)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [animationDelay])
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn(
+        "relative font-sans font-bold [filter:url(#threshold)_blur(0.6px)]",
+        className
+      )}
+      style={{
+        opacity: showAnimation ? 1 : 0,
+        transition: `opacity 0.5s ease`,
+        transitionDelay: `${animationDelay}s`,
+      }}
+    >
+      <Texts 
+        texts={texts} 
+        morphTime={morphTime} 
+        cooldownTime={cooldownTime}
+        isInView={isInView}
+      />
+      <SvgFilters />
+    </div>
+  )
+}
