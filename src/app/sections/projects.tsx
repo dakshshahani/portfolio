@@ -55,7 +55,7 @@ export function Projects() {
       <div
         className={`grid sm:grid-cols-2 md:px-10 lg:grid-cols-${colCount} gap-6 max-w-5xl`}
       >
-        {projects.map((p, index) => (
+        {projects.map((p) => (
           <Card key={p.title} className="flex flex-col h-full">
             <CardHeader>
               <CardTitle>{p.title}</CardTitle>
