@@ -1,6 +1,7 @@
 "use client";
 
 import { MorphingText } from "@/components/ui/morphing-text";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 export function About() {
   return (
@@ -61,55 +62,139 @@ export function About() {
 
       <section
         id="about"
-        className="py-24 px-24 flex flex-col md:flex-row items-center justify-around"
+        className="py-24 px-24 gap-8 flex flex-col md:flex-row items-center justify-around"
       >
+        {/* Left: heading + morphing text */}
         <div className="flex flex-col text-left gap-4">
-            <h1 className="text-5xl md:text-6xl font-bold">
-              Hey, I'm <span className="text-primary">Daksh 👨‍💻</span>
-            </h1>
-            <div className="flex gap-2">
-              <p className="text-3xl font-light shrink-0">I'm a</p>
-              <MorphingText
-                texts={[
-                  "3rd Year CS Student",
-                  "Software Developer",
-                  "Hackathon Organizer",
-                  "Motion Designer",
-                  "Video Editor",
-                  "Photographer",
-                ]}
-                morphTime={1.2}
-                cooldownTime={1.6}
-                className="text-3xl md:text-3xl h-10 flex-1"
-              />
-            </div>
-          </div>
+          <TextAnimate
+            as="h1"
+            animation="blurInUp"
+            by="word"
+            delay={0}
+            once
+            className="text-5xl md:text-6xl font-bold"
+          >
+            {"Hey, I'm Daksh 👨‍💻"}
+          </TextAnimate>
 
+          <div className="flex flex-col gap-1">
+            <TextAnimate
+              as="p"
+              animation="blurInUp"
+              by="text"
+              delay={0.3}
+              once
+              className="text-3xl font-light"
+            >
+              {"I'm a"}
+            </TextAnimate>
+            <MorphingText
+              texts={[
+                "CS Student",
+                "Software Developer",
+                "Hackathon Organizer",
+                "Motion Designer",
+                "Video Editor",
+                "Photographer",
+              ]}
+              morphTime={1.2}
+              cooldownTime={1.6}
+              animationDelay={0.6}
+              className="text-3xl md:text-3xl h-10"
+            />
+          </div>
+        </div>
+
+        {/* Right: lists */}
         <div className="flex flex-col gap-6 text-left">
           <div>
-            <h3 className="py-2 text-2xl">Currently I'm ..</h3>
+            <TextAnimate
+              as="h3"
+              animation="blurInUp"
+              by="text"
+              delay={0.5}
+              once
+              className="py-2 text-2xl"
+            >
+              {"Currently I'm .."}
+            </TextAnimate>
             <ul className="space-y-1 text-md pl-2">
-              <li>🔭 Full Stack Developer</li>
-              <li>🎥 Media Specialist @ nwPlus</li>
-              <li> 👨‍💻 working on cloud native projects!</li>
-              <li>🧠 exploring cloud infrastructure on AWS</li>
+              {[
+                "🔭 Full Stack Developer",
+                "🎥 Media Specialist @ nwPlus",
+                "👨‍💻 working on cloud native projects!",
+                "🧠 exploring cloud infrastructure on AWS",
+              ].map((item, i) => (
+                <TextAnimate
+                  key={item}
+                  as="li"
+                  animation="blurInUp"
+                  by="text"
+                  delay={0.6 + i * 0.08}
+                  once
+                >
+                  {item}
+                </TextAnimate>
+              ))}
             </ul>
           </div>
+
           <div>
-            <h3 className="py-2 text-2xl">I'm passionate about...</h3>
+            <TextAnimate
+              as="h3"
+              animation="blurInUp"
+              by="text"
+              delay={1.0}
+              once
+              className="py-2 text-2xl"
+            >
+              {"I'm passionate about..."}
+            </TextAnimate>
             <ul className="space-y-1 text-md pl-2">
-              <li>💻 Web Development</li>
-              <li>🎨 Motion Design</li>
-              <li>📸 Photography</li>
-              <li>🧠 Maximizing Productivity</li>
+              {[
+                "💻 Web Development",
+                "🎨 Motion Design",
+                "📸 Photography",
+                "🧠 Maximizing Productivity",
+              ].map((item, i) => (
+                <TextAnimate
+                  key={item}
+                  as="li"
+                  animation="blurInUp"
+                  by="text"
+                  delay={1.1 + i * 0.08}
+                  once
+                >
+                  {item}
+                </TextAnimate>
+              ))}
             </ul>
           </div>
+
           <div>
-            <h3 className="py-2 text-2xl">I also like...</h3>
+            <TextAnimate
+              as="h3"
+              animation="blurInUp"
+              by="text"
+              delay={1.45}
+              once
+              className="py-2 text-2xl"
+            >
+              {"I also like..."}
+            </TextAnimate>
             <ul className="space-y-1 text-md pl-2">
-              <li>🏐 Volleyball</li>
-              <li>🏎️ F1</li>
-              <li>🍵 Matcha</li>
+              {["🏐 Volleyball", "🏎️ F1", "🍵 Matcha"].map((item, i) => (
+                <TextAnimate
+                  key={item}
+                  as="li"
+                  animation="blurInUp"
+                  by="text"
+                  delay={1.55 + i * 0.08}
+                  once
+                >
+                  {item}
+                </TextAnimate>
+              ))}
             </ul>
           </div>
         </div>

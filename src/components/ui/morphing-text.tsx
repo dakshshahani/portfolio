@@ -100,6 +100,7 @@ interface MorphingTextProps {
   texts: string[]
   morphTime?: number
   cooldownTime?: number
+  animationDelay?: number
 }
 
 const Texts: React.FC<MorphingTextProps> = ({
@@ -154,12 +155,18 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
   className,
   morphTime,
   cooldownTime,
+  animationDelay = 0,
 }) => (
   <div
     className={cn(
       "relative font-sans font-bold [filter:url(#threshold)_blur(0.6px)]",
       className
     )}
+    style={{
+      opacity: 0,
+      animation: `fadeIn 0.5s ease forwards`,
+      animationDelay: `${animationDelay}s`,
+    }}
   >
     <Texts texts={texts} morphTime={morphTime} cooldownTime={cooldownTime} />
     <SvgFilters />
