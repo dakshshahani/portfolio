@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar } from "@/app/sections/navbar";
+import { DockDemo } from "@/components/animated-dock";
 import { Hero } from "@/app/sections/hero";
 import { Projects } from "@/app/sections/projects";
 import { Experience } from "@/app/sections/experience";
@@ -13,13 +13,13 @@ export default function HomePage() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden bg-background">
     {/* 🔹 Shader layer */}
-    <div className="hidden md:block">
+    {/* <div className="hidden md:block">
         <ShaderBackground />
-    </div>
+    </div> */}
 
     {/* 🔝 Site content */}
       <div className="relative z-10 flex flex-col">
-        <Navbar />
+        <DockDemo />
         <main className="flex-1">
           <Hero />
           <About />
