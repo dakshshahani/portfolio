@@ -15,8 +15,6 @@ export function InteractiveGridPatternDemo() {
             "skew-y-12 opacity-70"
           )}
           squaresClassName="stroke-foreground/40"
-          text="Daksh Shahani"
-          letterFadeDelay={1500}
         />
       </div>
     </section>

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useRef, useState } from "react"
+import React, { useState } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -19,13 +19,11 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
   squares?: [number, number] // [horizontal, vertical]
   className?: string
   squaresClassName?: string
-  text?: string
-  letterFadeDelay?: number
 }
 
-interface LetterInfo {
-  letter: string
-}
+// Letters to embed in the grid, centered
+const LINE1 = "Daksh Shahani's"
+const LINE2 = "Portfolio"
 
 /**
  * The InteractiveGridPattern component.
@@ -39,47 +37,33 @@ export function InteractiveGridPattern({
   squares = [24, 24],
   className,
   squaresClassName,
-  text,
-  letterFadeDelay = 1500,
   ...props
 }: InteractiveGridPatternProps) {
   const [horizontal, vertical] = squares
   const [hoveredSquare, setHoveredSquare] = useState<number | null>(null)
-  const [letterIndex, setLetterIndex] = useState(0)
-  const [squareLetters, setSquareLetters] = useState<Map<number, LetterInfo>>(new Map())
-  const timeoutsRef = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map())
 
-  const handleMouseEnter = useCallback((index: number) => {
-    setHoveredSquare(index)
+  // Build a set of { squareIndex -> letter } for the two centered lines
+  const letterMap = new Map<number, string>()
 
-    if (text) {
-      const currentLetter = text[letterIndex]
-      setSquareLetters(prev => {
-        const next = new Map(prev)
-        next.set(index, { letter: currentLetter })
-        return next
-      })
-      setLetterIndex(prev => (prev + 1) % text.length)
+  const centerRow1 = Math.floor(vertical / 2) - 1
+  const centerRow2 = Math.floor(vertical / 2) + 1
 
-      const existingTimeout = timeoutsRef.current.get(index)
-      if (existingTimeout) clearTimeout(existingTimeout)
+  const startCol1 = Math.floor((horizontal - LINE1.length) / 2)
+  const startCol2 = Math.floor((horizontal - LINE2.length) / 2)
 
-      const timeoutId = setTimeout(() => {
-        setSquareLetters(prev => {
-          const next = new Map(prev)
-          next.delete(index)
-          return next
-        })
-        timeoutsRef.current.delete(index)
-      }, letterFadeDelay)
-
-      timeoutsRef.current.set(index, timeoutId)
+  for (let i = 0; i < LINE1.length; i++) {
+    const col = startCol1 + i
+    if (col >= 0 && col < horizontal) {
+      letterMap.set(centerRow1 * horizontal + col, LINE1[i])
     }
-  }, [text, letterIndex, letterFadeDelay])
+  }
 
-  const handleMouseLeave = useCallback(() => {
-    setHoveredSquare(null)
-  }, [])
+  for (let i = 0; i < LINE2.length; i++) {
+    const col = startCol2 + i
+    if (col >= 0 && col < horizontal) {
+      letterMap.set(centerRow2 * horizontal + col, LINE2[i])
+    }
+  }
 
   return (
     <svg
@@ -94,6 +78,7 @@ export function InteractiveGridPattern({
       {Array.from({ length: horizontal * vertical }).map((_, index) => {
         const x = (index % horizontal) * width
         const y = Math.floor(index / horizontal) * height
+        const letter = letterMap.get(index)
         return (
           <g key={index}>
             <rect
@@ -106,19 +91,19 @@ export function InteractiveGridPattern({
                 hoveredSquare === index ? "fill-gray-300/30" : "fill-transparent",
                 squaresClassName
               )}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => setHoveredSquare(index)}
+              onMouseLeave={() => setHoveredSquare(null)}
             />
-            {squareLetters.get(index) && (
+            {letter && (
               <text
                 x={x + width / 2}
                 y={y + height / 2}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className="pointer-events-none select-none fill-foreground/70"
-                style={{ fontSize: `${Math.min(width, height) * 0.5}px` }}
+                className="pointer-events-none select-none fill-foreground"
+                style={{ fontSize: `${Math.min(width, height) * 0.55}px`, fontWeight: 600 }}
               >
-                {squareLetters.get(index)?.letter}
+                {letter}
               </text>
             )}
           </g>
