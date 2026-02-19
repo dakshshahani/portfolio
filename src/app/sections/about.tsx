@@ -62,10 +62,10 @@ export function About() {
 
       <section
         id="about"
-        className="py-24 px-24 gap-8 flex flex-col md:flex-row items-center justify-around"
+        className="py-24 md:px-24 px-8 gap-8 flex flex-col md:flex-row md:items-center justify-around"
       >
         {/* Left: heading + morphing text */}
-        <div className="flex flex-col text-left gap-4">
+        <div className="flex flex-col gap-4">
           <TextAnimate
             as="h1"
             animation="blurInUp"
@@ -74,7 +74,7 @@ export function About() {
             once
             className="text-5xl md:text-6xl font-bold"
           >
-            {"Hey, I'm Daksh 👨‍💻"}
+            {"Hey, I'm Daksh👨‍💻"}
           </TextAnimate>
 
           <div className="flex flex-col gap-1">
