@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -19,6 +19,12 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
   squares?: [number, number] // [horizontal, vertical]
   className?: string
   squaresClassName?: string
+  text?: string
+  letterFadeDelay?: number
+}
+
+interface LetterInfo {
+  letter: string
 }
 
 /**
@@ -33,10 +39,47 @@ export function InteractiveGridPattern({
   squares = [24, 24],
   className,
   squaresClassName,
+  text,
+  letterFadeDelay = 1500,
   ...props
 }: InteractiveGridPatternProps) {
   const [horizontal, vertical] = squares
   const [hoveredSquare, setHoveredSquare] = useState<number | null>(null)
+  const [letterIndex, setLetterIndex] = useState(0)
+  const [squareLetters, setSquareLetters] = useState<Map<number, LetterInfo>>(new Map())
+  const timeoutsRef = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map())
+
+  const handleMouseEnter = useCallback((index: number) => {
+    setHoveredSquare(index)
+
+    if (text) {
+      const currentLetter = text[letterIndex]
+      setSquareLetters(prev => {
+        const next = new Map(prev)
+        next.set(index, { letter: currentLetter })
+        return next
+      })
+      setLetterIndex(prev => (prev + 1) % text.length)
+
+      const existingTimeout = timeoutsRef.current.get(index)
+      if (existingTimeout) clearTimeout(existingTimeout)
+
+      const timeoutId = setTimeout(() => {
+        setSquareLetters(prev => {
+          const next = new Map(prev)
+          next.delete(index)
+          return next
+        })
+        timeoutsRef.current.delete(index)
+      }, letterFadeDelay)
+
+      timeoutsRef.current.set(index, timeoutId)
+    }
+  }, [text, letterIndex, letterFadeDelay])
+
+  const handleMouseLeave = useCallback(() => {
+    setHoveredSquare(null)
+  }, [])
 
   return (
     <svg
@@ -52,20 +95,33 @@ export function InteractiveGridPattern({
         const x = (index % horizontal) * width
         const y = Math.floor(index / horizontal) * height
         return (
-          <rect
-            key={index}
-            x={x}
-            y={y}
-            width={width}
-            height={height}
-            className={cn(
-              "stroke-gray-400/30 transition-all duration-100 ease-in-out [&:not(:hover)]:duration-1000",
-              hoveredSquare === index ? "fill-gray-300/30" : "fill-transparent",
-              squaresClassName
+          <g key={index}>
+            <rect
+              x={x}
+              y={y}
+              width={width}
+              height={height}
+              className={cn(
+                "stroke-gray-400/30 transition-all duration-100 ease-in-out [&:not(:hover)]:duration-1000",
+                hoveredSquare === index ? "fill-gray-300/30" : "fill-transparent",
+                squaresClassName
+              )}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+            />
+            {squareLetters.get(index) && (
+              <text
+                x={x + width / 2}
+                y={y + height / 2}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="pointer-events-none select-none fill-foreground/70"
+                style={{ fontSize: `${Math.min(width, height) * 0.5}px` }}
+              >
+                {squareLetters.get(index)?.letter}
+              </text>
             )}
-            onMouseEnter={() => setHoveredSquare(index)}
-            onMouseLeave={() => setHoveredSquare(null)}
-          />
+          </g>
         )
       })}
     </svg>
