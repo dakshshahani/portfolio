@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar } from "@/app/sections/navbar";
+import { DockDemo } from "@/components/animated-dock";
 import { Hero } from "@/app/sections/hero";
 import { Projects } from "@/app/sections/projects";
 import { Experience } from "@/app/sections/experience";
@@ -19,7 +19,7 @@ export default function HomePage() {
 
     {/* 🔝 Site content */}
       <div className="relative z-10 flex flex-col">
-        <Navbar />
+        <DockDemo />
         <main className="flex-1">
           <Hero />
           <About />
