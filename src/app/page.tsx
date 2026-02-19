@@ -2,6 +2,7 @@
 
 import { DockDemo } from "@/components/animated-dock";
 import { Hero } from "@/app/sections/hero";
+import { InteractiveGridPatternDemo } from "@/app/sections/animated-hero";
 import { Projects } from "@/app/sections/projects";
 import { Experience } from "@/app/sections/experience";
 import { Contact } from "@/app/sections/contact";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <div className="relative z-10 flex flex-col">
         <DockDemo />
         <main className="flex-1">
+          <InteractiveGridPatternDemo />
           <Hero />
           <About />
           <Projects />
