@@ -99,7 +99,7 @@ export function About() {
               ]}
               morphTime={1.2}
               cooldownTime={1.6}
-              animationDelay={0.6}
+              animationDelay={0.2}
               className="text-3xl md:text-3xl h-10"
             />
           </div>

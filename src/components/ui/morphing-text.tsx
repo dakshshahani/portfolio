@@ -196,7 +196,7 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
           }, animationDelay * 1000)
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: "50px" }
     )
 
     if (containerRef.current) {
