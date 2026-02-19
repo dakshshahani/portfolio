@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useCallback } from "react"
 import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
@@ -23,6 +23,8 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
   rowOffset?: number
   colOffset?: number
   animate?: boolean
+  emojis?: string[] // Customizable emoji array
+  emojiProbability?: number // Probability of showing emoji on hover (0-1)
 }
 
 // Letters to embed in the grid, centered
@@ -44,10 +46,38 @@ export function InteractiveGridPattern({
   rowOffset = 0,
   colOffset = 0,
   animate = true,
+  emojis = ["👨‍💻", "🚀", "💻", "🏎️", "🍵", "🎥", "📸"],
+  emojiProbability = 0.10,
   ...props
 }: InteractiveGridPatternProps) {
   const [horizontal, vertical] = squares
   const [hoveredSquare, setHoveredSquare] = useState<number | null>(null)
+  const [visibleEmojis, setVisibleEmojis] = useState<Map<number, string>>(new Map())
+  const [emojiIndex, setEmojiIndex] = useState(0)
+
+  const handleMouseEnter = useCallback((index: number) => {
+    setHoveredSquare(index)
+    
+    // Show emoji in sequence from the array
+    if (Math.random() < emojiProbability && !visibleEmojis.has(index)) {
+      const nextEmoji = emojis[emojiIndex % emojis.length]
+      setVisibleEmojis(prev => new Map(prev).set(index, nextEmoji))
+      setEmojiIndex(prev => prev + 1)
+      
+      // Remove emoji after 1.5 seconds
+      setTimeout(() => {
+        setVisibleEmojis(prev => {
+          const next = new Map(prev)
+          next.delete(index)
+          return next
+        })
+      }, 1500)
+    }
+  }, [emojis, emojiProbability, visibleEmojis, emojiIndex])
+
+  const handleMouseLeave = useCallback(() => {
+    setHoveredSquare(null)
+  }, [])
 
   // Build a set of { squareIndex -> letter } for the two centered lines
   const letterMap = new Map<number, { letter: string; charIndex: number }>()
@@ -95,12 +125,24 @@ export function InteractiveGridPattern({
               height={height}
               className={cn(
                 "stroke-gray-400/30 transition-all duration-100 ease-in-out [&:not(:hover)]:duration-1000",
-                hoveredSquare === index ? "fill-gray-300/30" : "fill-transparent",
+                hoveredSquare === index ? "fill-gray-500/60" : "fill-transparent",
                 squaresClassName
               )}
-              onMouseEnter={() => setHoveredSquare(index)}
-              onMouseLeave={() => setHoveredSquare(null)}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
             />
+            {visibleEmojis.get(index) && (
+              <text
+                x={x + width / 2}
+                y={y + height / 2}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="pointer-events-none select-none fill-foreground"
+                style={{ fontSize: `${Math.min(width, height) * 0.7}px` }}
+              >
+                {visibleEmojis.get(index)}
+              </text>
+            )}
             {letter && (
               animate ? (
                 <motion.text
