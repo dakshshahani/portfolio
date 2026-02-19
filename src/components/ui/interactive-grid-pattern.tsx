@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -43,7 +44,7 @@ export function InteractiveGridPattern({
   const [hoveredSquare, setHoveredSquare] = useState<number | null>(null)
 
   // Build a set of { squareIndex -> letter } for the two centered lines
-  const letterMap = new Map<number, string>()
+  const letterMap = new Map<number, { letter: string; charIndex: number }>()
 
   const centerRow1 = Math.floor(vertical / 2) - 1
   const centerRow2 = Math.floor(vertical / 2) + 1
@@ -54,14 +55,14 @@ export function InteractiveGridPattern({
   for (let i = 0; i < LINE1.length; i++) {
     const col = startCol1 + i
     if (col >= 0 && col < horizontal) {
-      letterMap.set(centerRow1 * horizontal + col, LINE1[i])
+      letterMap.set(centerRow1 * horizontal + col, { letter: LINE1[i], charIndex: i })
     }
   }
 
   for (let i = 0; i < LINE2.length; i++) {
     const col = startCol2 + i
     if (col >= 0 && col < horizontal) {
-      letterMap.set(centerRow2 * horizontal + col, LINE2[i])
+      letterMap.set(centerRow2 * horizontal + col, { letter: LINE2[i], charIndex: LINE1.length + i })
     }
   }
 
@@ -95,16 +96,19 @@ export function InteractiveGridPattern({
               onMouseLeave={() => setHoveredSquare(null)}
             />
             {letter && (
-              <text
+              <motion.text
                 x={x + width / 2}
                 y={y + height / 2}
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="pointer-events-none select-none fill-foreground"
                 style={{ fontSize: `${Math.min(width, height) * 0.55}px`, fontWeight: 600 }}
+                initial={{ opacity: 0, translateY: 10 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{ delay: letter.charIndex * 0.04, duration: 0.4, ease: "easeOut" }}
               >
-                {letter}
-              </text>
+                {letter.letter}
+              </motion.text>
             )}
           </g>
         )
