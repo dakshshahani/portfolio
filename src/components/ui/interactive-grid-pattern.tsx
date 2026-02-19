@@ -20,6 +20,9 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
   squares?: [number, number] // [horizontal, vertical]
   className?: string
   squaresClassName?: string
+  rowOffset?: number
+  colOffset?: number
+  animate?: boolean
 }
 
 // Letters to embed in the grid, centered
@@ -38,6 +41,9 @@ export function InteractiveGridPattern({
   squares = [24, 24],
   className,
   squaresClassName,
+  rowOffset = 0,
+  colOffset = 0,
+  animate = true,
   ...props
 }: InteractiveGridPatternProps) {
   const [horizontal, vertical] = squares
@@ -46,11 +52,11 @@ export function InteractiveGridPattern({
   // Build a set of { squareIndex -> letter } for the two centered lines
   const letterMap = new Map<number, { letter: string; charIndex: number }>()
 
-  const centerRow1 = Math.floor(vertical / 2) - 1
-  const centerRow2 = Math.floor(vertical / 2) + 1
+  const centerRow1 = Math.floor(vertical / 2) - 1 + rowOffset
+  const centerRow2 = Math.floor(vertical / 2) + 1 + rowOffset
 
-  const startCol1 = Math.floor((horizontal - LINE1.length) / 2)
-  const startCol2 = Math.floor((horizontal - LINE2.length) / 2)
+  const startCol1 = Math.floor((horizontal - LINE1.length) / 2) + colOffset
+  const startCol2 = Math.floor((horizontal - LINE2.length) / 2) + colOffset
 
   for (let i = 0; i < LINE1.length; i++) {
     const col = startCol1 + i
@@ -96,19 +102,32 @@ export function InteractiveGridPattern({
               onMouseLeave={() => setHoveredSquare(null)}
             />
             {letter && (
-              <motion.text
-                x={x + width / 2}
-                y={y + height / 2}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className="pointer-events-none select-none fill-foreground"
-                style={{ fontSize: `${Math.min(width, height) * 0.55}px`, fontWeight: 600 }}
-                initial={{ opacity: 0, translateY: 10 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                transition={{ delay: letter.charIndex * 0.04, duration: 0.4, ease: "easeOut" }}
-              >
-                {letter.letter}
-              </motion.text>
+              animate ? (
+                <motion.text
+                  x={x + width / 2}
+                  y={y + height / 2}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="pointer-events-none select-none fill-foreground"
+                  style={{ fontSize: `${Math.min(width, height) * .7}px`, fontWeight: 500 }}
+                  initial={{ opacity: 0, translateY: 10 }}
+                  animate={{ opacity: 1, translateY: 0 }}
+                  transition={{ delay: letter.charIndex * 0.04, duration: 0.4, ease: "easeOut" }}
+                >
+                  {letter.letter}
+                </motion.text>
+              ) : (
+                <text
+                  x={x + width / 2}
+                  y={y + height / 2}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="pointer-events-none select-none fill-foreground"
+                  style={{ fontSize: `${Math.min(width, height) * 0.8}px`, fontWeight: 500 }}
+                >
+                  {letter.letter}
+                </text>
+              )
             )}
           </g>
         )
