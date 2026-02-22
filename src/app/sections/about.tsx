@@ -74,7 +74,7 @@ export function About() {
             once
             className="text-5xl md:text-6xl font-bold"
           >
-            {"Hey, I'm Daksh👨‍💻"}
+            {"Hey, I'm Daksh 👨‍💻"}
           </TextAnimate>
 
           <div className="flex flex-col gap-1">

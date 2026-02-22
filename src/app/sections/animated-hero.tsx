@@ -30,7 +30,7 @@ export function InteractiveGridPatternDemo() {
         <InteractiveGridPattern
           squares={[30,30]}
           rowOffset={-5}
-          colOffset={-3}
+          colOffset={-2}
           className={cn(
             "border-0",
             "absolute inset-0 h-full w-full",
