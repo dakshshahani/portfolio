@@ -2,6 +2,11 @@
 
 import { MorphingText } from "@/components/ui/morphing-text";
 import { TextAnimate } from "@/components/ui/text-animate";
+import { useEffect, useState } from "react";
+
+
+
+
 
 export function About() {
   return (
@@ -202,3 +207,27 @@ export function About() {
     </>
   );
 }
+
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Count changed to:", count);
+
+    return () => {
+      console.log("Cleaning up previous count:", count);
+    };
+  }, [count]);
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+
+
