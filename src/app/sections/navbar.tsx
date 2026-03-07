@@ -11,13 +11,9 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useWebHaptics } from "web-haptics/react";
 
 export function Navbar() {
   const { scrollY } = useScroll();
-  const { trigger } = useWebHaptics();
-
-  const triggerNavHaptic = () => trigger([{ duration: 25 }], { intensity: 0.7 });
 
   // Turn scroll position into opacity (or you can replace with translateY for slide‑in)
   const opacity = useTransform(scrollY, [0, 80], [0, 1]);
@@ -30,7 +26,7 @@ export function Navbar() {
     >
       <div className="mx-auto flex justify-around items-center px-4 py-3 transition-colors duration-300">
         <div className="flex items-center gap-2">
-            <Link href="#home" onClick={triggerNavHaptic}>
+            <Link href="#home">
               <img src="/favicon.ico" alt="Logo" className="w-9 h-9" />
             </Link>
           {/* <h1 className="font-semibold text-xl">Daksh Shahani</h1> */}
@@ -41,7 +37,7 @@ export function Navbar() {
           <NavigationMenuList className="flex gap-6">
             {["Home", "Projects", "Experience", "Contact"].map((item) => (
               <NavigationMenuItem key={item}>
-                <Link href={`#${item.toLowerCase()}`} onClick={triggerNavHaptic}>
+                <Link href={`#${item.toLowerCase()}`}>
                   <NavigationMenuLink className="text-sm font-medium hover:text-primary transition-colors">
                     {item}
                   </NavigationMenuLink>
@@ -54,7 +50,7 @@ export function Navbar() {
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="outline" size="icon" onClick={triggerNavHaptic}>
+            <Button variant="outline" size="icon">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
@@ -66,7 +62,6 @@ export function Navbar() {
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                onClick={triggerNavHaptic}
                 className="text-lg font-medium hover:text-primary"
               >
                 {item}
