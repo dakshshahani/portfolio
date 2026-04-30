@@ -13,6 +13,7 @@ export default function ExpandableTimeline({
   experiences,
 }: ExpandableTimelineProps) {
   const [active, setActive] = useState<Experience | boolean | null>(null);
+  const [imageWidth, setImageWidth] = useState<number>(600);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
 
@@ -80,22 +81,25 @@ export default function ExpandableTimeline({
                    <motion.div
                      layoutId={`card-${activeIndex}-${id}`}
                      ref={ref}
-                     className="w-full max-w-[600px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white sm:rounded-3xl overflow-hidden"
+                     className="h-full md:h-fit md:max-h-[90%] flex flex-col bg-white sm:rounded-3xl overflow-hidden"
+                     style={{ width: `${imageWidth}px`, maxWidth: '90vw' }}
                    >
-                     {/* Image Header */}
-                     <motion.div layoutId={`image-${activeIndex}-${id}`}>
-                       <img
-                         width={200}
-                         height={200}
-                         src={active.src}
-                         alt={active.title}
-                         className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
-                       />
+                       {/* Image Header */}
+                       <motion.div layoutId={`image-${activeIndex}-${id}`} className="flex items-center justify-center min-h-[200px]">
+                         <img
+                           src={active.src}
+                           alt={active.title}
+                           onLoad={(e) => {
+                             const img = e.currentTarget;
+                             setImageWidth(img.offsetWidth);
+                           }}
+                           className="w-full sm:rounded-tr-lg sm:rounded-tl-lg object-contain object-top"
+                         />
                      </motion.div>
 
                      <div>
-                       {/* Title, Company, Location, Date */}
-                       <div className="flex justify-between items-start p-4 gap-4">
+                        {/* Title, Company, Location, Date */}
+                        <div className="flex justify-between items-start p-4 gap-4">
                          <div className="flex-1">
                            <motion.h3
                              layoutId={`title-${activeIndex}-${id}`}
@@ -119,8 +123,8 @@ export default function ExpandableTimeline({
                          </div>
                        </div>
 
-                       {/* Content */}
-                       <div className="pt-4 relative px-4">
+                        {/* Content */}
+                        <div className="pt-4 relative px-4">
                          <motion.div
                            layout
                            initial={{ opacity: 0 }}
