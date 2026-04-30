@@ -73,7 +73,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <img
@@ -129,7 +129,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
           </div>
         ) : null}
       </AnimatePresence>
-      <ul className="max-w-2xl mx-auto w-full gap-4">
+      <ul className="max-w-3xl mx-auto w-full gap-4">
         {cards.map((card, index) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}
@@ -149,14 +149,14 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
               </motion.div>
               <div className="">
                 <motion.h3
-                  layoutId={`title-${card.title}-${id}`}
-                  className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left"
-                >
+                   layoutId={`title-${card.title}-${id}`}
+                   className="font-medium text-black text-center md:text-left dark:text-white"
+                 >
                   {card.title}
                 </motion.h3>
                 <motion.p
                   layoutId={`description-${card.description}-${id}`}
-                  className="text-neutral-600 dark:text-neutral-400 text-center md:text-left"
+                  className="text-black dark:text-neutral-400 text-center md:text-left"
                 >
                   {card.description}
                 </motion.p>
@@ -164,7 +164,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
             </div>
             <motion.button
               layoutId={`button-${card.title}-${id}`}
-              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0"
+              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-gray-600 hover:text-white text-black mt-4 md:mt-0"
             >
               {card.ctaText}
             </motion.button>
