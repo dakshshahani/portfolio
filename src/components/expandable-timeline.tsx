@@ -49,91 +49,98 @@ export default function ExpandableTimeline({
         )}
       </AnimatePresence>
 
-      {/* Expanded Modal */}
-      <AnimatePresence>
-        {active && typeof active === "object" ? (
-          <div className="fixed inset-0 grid place-items-center z-[100]">
-            <motion.button
-              key={`button-${active.title}-${id}`}
-              layout
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-                transition: {
-                  duration: 0.05,
-                },
-              }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
-              onClick={() => setActive(null)}
-            >
-              <CloseIcon />
-            </motion.button>
-            <motion.div
-              layoutId={`card-${active.title}-${id}`}
-              ref={ref}
-              className="w-full max-w-[600px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white sm:rounded-3xl overflow-hidden"
-            >
-              {/* Image Header */}
-              <motion.div layoutId={`image-${active.title}-${id}`}>
-                <img
-                  width={200}
-                  height={200}
-                  src={active.src}
-                  alt={active.title}
-                  className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
-                />
-              </motion.div>
+       {/* Expanded Modal */}
+       <AnimatePresence>
+         {active && typeof active === "object" ? (
+           <div className="fixed inset-0 grid place-items-center z-[100]">
+             {(() => {
+               const activeIndex = experiences.findIndex((exp) => exp === active);
+               return (
+                 <>
+                   <motion.button
+                     key={`button-${activeIndex}-${id}`}
+                     layout
+                     initial={{
+                       opacity: 0,
+                     }}
+                     animate={{
+                       opacity: 1,
+                     }}
+                     exit={{
+                       opacity: 0,
+                       transition: {
+                         duration: 0.05,
+                       },
+                     }}
+                     className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+                     onClick={() => setActive(null)}
+                   >
+                     <CloseIcon />
+                   </motion.button>
+                   <motion.div
+                     layoutId={`card-${activeIndex}-${id}`}
+                     ref={ref}
+                     className="w-full max-w-[600px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white sm:rounded-3xl overflow-hidden"
+                   >
+                     {/* Image Header */}
+                     <motion.div layoutId={`image-${activeIndex}-${id}`}>
+                       <img
+                         width={200}
+                         height={200}
+                         src={active.src}
+                         alt={active.title}
+                         className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                       />
+                     </motion.div>
 
-              <div>
-                {/* Title, Company, Location, Date */}
-                <div className="flex justify-between items-start p-4 gap-4">
-                  <div className="flex-1">
-                    <motion.h3
-                      layoutId={`title-${active.title}-${id}`}
-                      className="font-bold text-neutral-700 text-2xl"
-                    >
-                      {active.title}
-                    </motion.h3>
-                    <motion.p
-                      layoutId={`company-${active.company}-${id}`}
-                      className="text-neutral-600 text-sm"
-                    >
-                      {active.company} • {active.location}
-                    </motion.p>
-                  </div>
+                     <div>
+                       {/* Title, Company, Location, Date */}
+                       <div className="flex justify-between items-start p-4 gap-4">
+                         <div className="flex-1">
+                           <motion.h3
+                             layoutId={`title-${activeIndex}-${id}`}
+                             className="font-bold text-neutral-700 text-2xl"
+                           >
+                             {active.title}
+                           </motion.h3>
+                           <motion.p
+                             layoutId={`company-${activeIndex}-${id}`}
+                             className="text-neutral-600 text-sm"
+                           >
+                             {active.company} • {active.location}
+                           </motion.p>
+                         </div>
 
-                  {/* Date Badge */}
-                  <div className="px-4 py-2 bg-gray-100 rounded-full whitespace-nowrap">
-                    <p className="text-xs font-semibold text-black">
-                      {active.startDate} - {active.endDate}
-                    </p>
-                  </div>
-                </div>
+                         {/* Date Badge */}
+                         <div className="px-4 py-2 bg-gray-100 rounded-full whitespace-nowrap">
+                           <p className="text-xs font-semibold text-black">
+                             {active.startDate} - {active.endDate}
+                           </p>
+                         </div>
+                       </div>
 
-                {/* Content */}
-                <div className="pt-4 relative px-4">
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
-                  >
-                    {typeof active.content === "function"
-                      ? active.content()
-                      : active.content}
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        ) : null}
-      </AnimatePresence>
+                       {/* Content */}
+                       <div className="pt-4 relative px-4">
+                         <motion.div
+                           layout
+                           initial={{ opacity: 0 }}
+                           animate={{ opacity: 1 }}
+                           exit={{ opacity: 0 }}
+                           className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                         >
+                           {typeof active.content === "function"
+                             ? active.content()
+                             : active.content}
+                         </motion.div>
+                       </div>
+                     </div>
+                   </motion.div>
+                 </>
+               );
+             })()}
+           </div>
+         ) : null}
+       </AnimatePresence>
 
       {/* Timeline List View */}
       <div className="max-w-xl mx-auto w-full relative">
@@ -142,36 +149,45 @@ export default function ExpandableTimeline({
 
         {/* Timeline Items */}
         <div className="space-y-6 pl-16">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={`${exp.title}-${id}`}
-              layoutId={`card-${exp.title}-${id}`}
-              onClick={() => setActive(exp)}
-              className="group relative p-4 flex flex-col md:flex-row justify-between items-start hover:bg-gray-200 rounded-xl cursor-pointer -ml-16 pl-16"
-            >
-              {/* Timeline Dot */}
-              <div className="absolute w-4 h-4 rounded-full bg-neutral-400 border-2 border-white" style={{ left: '14px', top: '24px', transform: 'translate(-50%, -50%)' }} />
+           {experiences.map((exp, index) => (
+             <motion.div
+               key={`${index}-${exp.title}-${id}`}
+               layoutId={`card-${index}-${id}`}
+               onClick={() => setActive(exp)}
+               className="group relative p-4 flex flex-col md:flex-row justify-between items-start hover:bg-gray-200 rounded-xl cursor-pointer -ml-16 pl-16"
+             >
+               {/* Timeline Dot */}
+               <div className="absolute w-4 h-4 rounded-full bg-neutral-400 border-2 border-white" style={{ left: '14px', top: '24px', transform: 'translate(-50%, -50%)' }} />
 
-              {/* Content */}
-              <div className="flex gap-4 flex-col md:flex-row flex-1">
-                <div className="flex-1">
-                  <motion.h3
-                    layoutId={`title-${exp.title}-${id}`}
-                    className="font-medium text-black group-hover:text-neutral-600 text-left"
-                  >
-                    {exp.title}
-                  </motion.h3>
-                  <motion.p
-                    layoutId={`company-${exp.company}-${id}`}
-                    className="text-sm text-neutral-600 group-hover:text-neutral-700"
-                  >
-                    {exp.company}
-                  </motion.p>
-                </div>
-              </div>
+               {/* Content */}
+               <div className="flex gap-4 flex-col md:flex-row flex-1 items-start md:items-center justify-between w-full">
+                 <div className="flex-1">
+                   <motion.h3
+                     layoutId={`title-${index}-${id}`}
+                     className="font-medium text-black group-hover:text-neutral-600 text-left"
+                   >
+                     {exp.title}
+                   </motion.h3>
+                   <motion.p
+                     layoutId={`company-${index}-${id}`}
+                     className="text-sm text-neutral-600 group-hover:text-neutral-700"
+                   >
+                     {exp.company}
+                   </motion.p>
+                 </div>
+                 {/* Thumbnail Image */}
+                 <motion.img
+                   layoutId={`thumbnail-${index}-${id}`}
+                   src={exp.logo}
+                   alt={exp.title}
+                   width={60}
+                   height={60}
+                   className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                 />
+               </div>
 
-            </motion.div>
-          ))}
+             </motion.div>
+           ))}
         </div>
       </div>
     </>

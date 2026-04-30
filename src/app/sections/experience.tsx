@@ -11,7 +11,8 @@ export function Experience() {
         endDate: "Present",
         description:
           "Built and optimized React-Firebase features across multiple web apps, improving load times by 35%.",
-        src: "https://via.placeholder.com/400x300?text=nwPlus",
+        logo: "/mastercardlogo.webp",
+        src: "/mastercard.gif",
         content: () => (
           <div className="space-y-4">
             <p>
@@ -29,7 +30,8 @@ export function Experience() {
       endDate: "Present",
       description:
         "Built and optimized React-Firebase features across multiple web apps, improving load times by 35%.",
-      src: "https://via.placeholder.com/400x300?text=nwPlus",
+      logo: "/nwpluslogo.png",
+      src: "/nwplus.png",
       content: () => (
         <div className="space-y-4">
           <p>
@@ -48,7 +50,8 @@ export function Experience() {
         endDate: "JAN 2026",
         description:
           "Tackled external developer tickets, building and maintaining web tools and APIs for nwHacks, HackCamp, and cmd-f.",
-        src: "https://via.placeholder.com/400x300?text=nwPlus",
+        logo: "/nwpluslogo.png",
+        src: "/nwplus.png",
         content: () => (
           <div className="space-y-4">
             <p>
@@ -70,7 +73,8 @@ export function Experience() {
       endDate: "FEB 2023",
       description:
         "Managed a 27-member team to organize Qatar's longest-running TEDx event.",
-      src: "https://via.placeholder.com/400x300?text=TEDx",
+      logo: "/tedxlogo.png",
+      src: "/tedx.png",
       content: () => (
         <div className="space-y-4">
           <p>

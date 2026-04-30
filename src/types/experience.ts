@@ -5,6 +5,7 @@ export interface Experience {
   startDate: string;
   endDate: string;
   description: string;
+  logo: string;
   src: string;
   content: React.ReactNode | (() => React.ReactNode);
 }
