@@ -4,6 +4,24 @@ import type { Experience } from "@/types/experience";
 export function Experience() {
   const experiences: Experience[] = [
     {
+        title: "Software Developer",
+        company: "Mastercard",
+        location: "Vancouver, Canada",
+        startDate: "May 2026",
+        endDate: "Present",
+        description:
+          "Built and optimized React-Firebase features across multiple web apps, improving load times by 35%.",
+        src: "https://via.placeholder.com/400x300?text=nwPlus",
+        content: () => (
+          <div className="space-y-4">
+            <p>
+              Perfomance Engineer. 
+              Details to follow.
+            </p>
+          </div>
+        ),
+      },
+    {
       title: "Software Developer",
       company: "nwPlus",
       location: "Vancouver, Canada",
