@@ -25,8 +25,8 @@ export default function HomePage() {
           <InteractiveGridPatternDemo />
           {/* <Hero /> */}
           <About />
-          <Projects />
           <Experience />
+          <Projects />
           <Contact />
         </main>
         <Footer />

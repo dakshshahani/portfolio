@@ -125,10 +125,10 @@ export function About() {
             </TextAnimate>
             <ul className="space-y-1 text-md pl-2">
               {[
-                "🔭 Full Stack Developer",
-                "🎥 Media Specialist @ nwPlus",
+                "🔭 SWE Intern @ Mastercard",
+                "🎥 Dev @ nwPlus",
                 "👨‍💻 working on cloud native projects!",
-                "🧠 exploring cloud infrastructure on AWS",
+                "🧠 exploring and learning Swift!",
               ].map((item, i) => (
                 <TextAnimate
                   key={item}
@@ -160,7 +160,7 @@ export function About() {
                 "💻 Web Development",
                 "🎨 Motion Design",
                 "📸 Photography",
-                "🧠 Maximizing Productivity",
+                "🎥 Video Editing",
               ].map((item, i) => (
                 <TextAnimate
                   key={item}
