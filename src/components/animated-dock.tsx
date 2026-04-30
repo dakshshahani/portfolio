@@ -1,12 +1,13 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 
 import { Dock, DockIcon } from "@/components/ui/dock"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import Link from "next/link"
 import { Briefcase, FolderKanban, Home, Mail, User } from "lucide-react"
 import { useWebHaptics } from "web-haptics/react"
+import { motion, useScroll, useTransform } from "framer-motion"
 
 const navItems = [
   { href: "#home", icon: Home, label: "Home" },
@@ -18,6 +19,7 @@ const navItems = [
 
 export function DockDemo() {
   const { trigger } = useWebHaptics()
+  const [footerDistance, setFooterDistance] = useState<number>(Infinity)
 
   const triggerNavHaptic = () => {
     if (typeof window === "undefined" || !window.matchMedia("(pointer: coarse)").matches) {
@@ -27,8 +29,31 @@ export function DockDemo() {
     trigger([{ duration: 25 }], { intensity: 0.7 })
   }
 
+  // Calculate footer distance and adjust opacity
+  useEffect(() => {
+    const handleScroll = () => {
+      const footer = document.querySelector("footer")
+      if (footer) {
+        const footerTop = footer.getBoundingClientRect().top
+        const viewportHeight = window.innerHeight
+        const distanceToFooter = footerTop - viewportHeight
+        setFooterDistance(distanceToFooter)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    handleScroll() // Initial calculation
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // Calculate fade opacity based on distance to footer
+  const dockOpacity = Math.max(0, Math.min(1, footerDistance / 200))
+
   return (
-    <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2">
+    <motion.div 
+      className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2"
+      animate={{ opacity: dockOpacity }}
+    >
       <Dock
         direction="middle"
         iconSize={36}
@@ -56,6 +81,6 @@ export function DockDemo() {
           </DockIcon>
         ))}
       </Dock>
-    </div>
+    </motion.div>
   )
 }

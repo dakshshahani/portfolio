@@ -5,7 +5,7 @@ import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern
 
 export function InteractiveGridPatternDemo() {
   return (
-    <section className="bg-background relative flex min-h-screen w-full items-center justify-center overflow-hidden">
+    <section className="bg-background relative flex w-full items-center justify-center overflow-hidden py-20">
       {/* Mobile - always rendered but hidden on desktop */}
       <div className="relative h-[100svh] w-full md:hidden">
         <InteractiveGridPattern
