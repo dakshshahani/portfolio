@@ -129,25 +129,16 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
           </div>
         ) : null}
       </AnimatePresence>
-      <ul className="max-w-3xl mx-auto w-full gap-4">
+      <ul className="max-w-2xl mx-auto w-full gap-4">
         {cards.map((card, index) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}
             key={`card-${card.title}-${id}`}
             onClick={() => setActive(card)}
             className="group p-4 flex flex-col md:flex-row justify-between items-center hover:bg-gray-200 rounded-xl cursor-pointer"
-          >
-            <div className="flex gap-4 flex-col md:flex-row ">
-              <motion.div layoutId={`image-${card.title}-${id}`}>
-                <img
-                  width={100}
-                  height={100}
-                  src={card.src}
-                  alt={card.title}
-                  className="h-40 w-40 md:h-14 md:w-14 rounded-lg object-cover object-top"
-                />
-              </motion.div>
-              <div className="">
+           >
+             <div className="flex gap-4 flex-col md:flex-row flex-1">
+               <div className="">
                 <motion.h3
                    layoutId={`title-${card.title}-${id}`}
                    className="font-medium text-black group-hover:text-neutral-600 text-center md:text-left"

@@ -44,9 +44,39 @@ export function Projects() {
 
   const projectCards: ExpandableCard[] = [
     {
+        title: "MediScan",
+        description: "AI-powered medication scanning and analysis tool",
+        src:"/mediscan.png",
+        ctaText: "View Project",
+        ctaLink: "https://github.com/aircon2/mediscan",
+        content: () => (
+            <div className="space-y-4">
+            <p>
+              MediScan is an AI-powered medication scanning and analysis tool that helps you understand what's in your medicine. Capture or upload photos of medication packaging to instantly identify the medicine, its active ingredients, side effects, and symptoms it treats.
+            </p>
+            <div>
+              <p className="font-semibold text-sm mb-2">Key Features:</p>
+              <ul className="text-sm list-disc list-inside space-y-1">
+                <li>Medication Scanner - Identify medicines from photos</li>
+                <li>AI-Powered Analysis - Google Gemini AI integration</li>
+                <li>Knowledge Graph - Interactive medication relationships</li>
+                <li>Symptom Search - Find medications by symptoms</li>
+                <li>Fuzzy Search - Intelligent search with Fuse.js</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-semibold text-sm mb-2">Tech Stack:</p>
+              <p className="text-sm">
+                Next.js, React, TailwindCSS, Framer Motion, Sigma.js, Express.js, Google Gemini AI
+              </p>
+            </div>
+            </div>
+        )
+    },
+    {
       title: "komo",
       description: "Unified search platform for enterprise workspaces",
-      src: "https://via.placeholder.com/400x300?text=komo",
+      src: "/komo.png",
       ctaText: "View Project",
       ctaLink: "https://github.com/aircon2/komo",
       content: () => (
@@ -70,7 +100,7 @@ export function Projects() {
     {
       title: "Weblink",
       description: "Visual knowledge map for saved links",
-      src: "https://via.placeholder.com/400x300?text=Weblink",
+      src: "/weblink.jpeg",
       ctaText: "View Project",
       ctaLink: "https://github.com/dakshshahani/weblink",
       content: () => (
@@ -94,7 +124,7 @@ export function Projects() {
     {
       title: "ClarityVR",
       description: "AI-based virtual reality therapist",
-      src: "https://via.placeholder.com/400x300?text=ClarityVR",
+      src: "/clarityvr.jpg",
       ctaText: "View Project",
       ctaLink: "https://github.com/aircon2/clarityVR",
       content: () => (
@@ -111,50 +141,29 @@ export function Projects() {
           </div>
         </div>
       ),
-    },
-    {
-      title: "AExpressions",
-      description: "AI-powered After Effects expression generator",
-      src: "https://via.placeholder.com/400x300?text=AExpressions",
-      ctaText: "View Project",
-      ctaLink: "https://github.com/dakshshahani/aexpressions",
-      content: () => (
-        <div className="space-y-4">
-          <p>
-            Web-based tool that generates After Effects expressions from user
-            prompts or AE files, powered by React, TypeScript, and FastAPI.
-            Features built-in expressions and AI integration to streamline
-            motion design workflows for creators.
-          </p>
-          <div>
-            <p className="font-semibold text-sm mb-2">Tech Stack:</p>
-            <p className="text-sm">React, TypeScript, OpenAPI, MongoDB</p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Space Guide",
-      description: "Interactive solar system explorer",
-      src: "https://via.placeholder.com/400x300?text=Space+Guide",
-      ctaText: "View Project",
-      ctaLink: "https://devpost.com/software/space-guide",
-      content: () => (
-        <div className="space-y-4">
-          <p>
-            Browser-based educational tool built with HTML, CSS, and JavaScript
-            that enables interactive exploration of our solar system. Features
-            dynamic navigation and responsive design for an engaging learning
-            experience across devices.
-          </p>
-          <div>
-            <p className="font-semibold text-sm mb-2">Tech Stack:</p>
-            <p className="text-sm">HTML, CSS, JavaScript</p>
-          </div>
-        </div>
-      ),
-    },
-  ];
+     },
+     {
+       title: "AExpressions",
+       description: "AI-powered After Effects expression generator",
+       src: "/aexpressions.png",
+       ctaText: "View Project",
+       ctaLink: "https://github.com/dakshshahani/aexpressions",
+       content: () => (
+         <div className="space-y-4">
+           <p>
+             Web-based tool that generates After Effects expressions from user
+             prompts or AE files, powered by React, TypeScript, and FastAPI.
+             Features built-in expressions and AI integration to streamline
+             motion design workflows for creators.
+           </p>
+           <div>
+             <p className="font-semibold text-sm mb-2">Tech Stack:</p>
+             <p className="text-sm">React, TypeScript, OpenAPI, MongoDB</p>
+           </div>
+         </div>
+       ),
+     },
+   ];
 
   return (
     <section
