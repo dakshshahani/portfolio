@@ -73,7 +73,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%] flex flex-col bg-white sm:rounded-3xl overflow-hidden"
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <img
@@ -90,13 +90,13 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
                   <div className="">
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
-                      className="font-bold text-neutral-700 dark:text-neutral-200"
+                      className="font-bold text-neutral-700"
                     >
                       {active.title}
                     </motion.h3>
                     <motion.p
                       layoutId={`description-${active.description}-${id}`}
-                      className="text-neutral-600 dark:text-neutral-400"
+                      className="text-neutral-600"
                     >
                       {active.description}
                     </motion.p>
@@ -117,7 +117,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                   >
                     {typeof active.content === "function"
                       ? active.content()
@@ -135,7 +135,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
             layoutId={`card-${card.title}-${id}`}
             key={`card-${card.title}-${id}`}
             onClick={() => setActive(card)}
-            className="p-4 flex flex-col md:flex-row justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+            className="group p-4 flex flex-col md:flex-row justify-between items-center hover:bg-gray-200 rounded-xl cursor-pointer"
           >
             <div className="flex gap-4 flex-col md:flex-row ">
               <motion.div layoutId={`image-${card.title}-${id}`}>
@@ -150,13 +150,13 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
               <div className="">
                 <motion.h3
                    layoutId={`title-${card.title}-${id}`}
-                   className="font-medium text-black text-center md:text-left dark:text-white"
+                   className="font-medium text-black group-hover:text-white text-center md:text-left"
                  >
                   {card.title}
                 </motion.h3>
                 <motion.p
                   layoutId={`description-${card.description}-${id}`}
-                  className="text-black dark:text-neutral-400 text-center md:text-left"
+                  className="text-neutral-300 group-hover:text-black text-center md:text-left"
                 >
                   {card.description}
                 </motion.p>
@@ -164,7 +164,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
             </div>
             <motion.button
               layoutId={`button-${card.title}-${id}`}
-              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-gray-600 hover:text-white text-black mt-4 md:mt-0"
+              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 text-black group-hover:bg-neutral-700 group-hover:text-white mt-4 md:mt-0"
             >
               {card.ctaText}
             </motion.button>
