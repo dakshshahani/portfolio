@@ -162,12 +162,16 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
                 </motion.p>
               </div>
             </div>
-            <motion.button
+            <motion.a
               layoutId={`button-${card.title}-${id}`}
+              href={card.ctaLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 text-black group-hover:bg-neutral-700 group-hover:text-white mt-4 md:mt-0"
             >
               {card.ctaText}
-            </motion.button>
+            </motion.a>
           </motion.div>
         ))}
       </ul>
