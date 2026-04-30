@@ -136,21 +136,21 @@ export default function ExpandableTimeline({
       </AnimatePresence>
 
       {/* Timeline List View */}
-      <div className="max-w-xl mx-auto w-full relative pl-8">
+      <div className="max-w-xl mx-auto w-full relative">
         {/* Timeline Line */}
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-neutral-300" />
+        <div className="absolute left-3 top-0 bottom-0 w-1 bg-neutral-300" />
 
         {/* Timeline Items */}
-        <div className="space-y-6">
+        <div className="space-y-6 pl-16">
           {experiences.map((exp, index) => (
             <motion.div
               key={`${exp.title}-${id}`}
               layoutId={`card-${exp.title}-${id}`}
               onClick={() => setActive(exp)}
-              className=" relative p-4 b-4 flex flex-col md:flex-row justify-between items-start cursor-pointer -ml-8 pl-12 group hover:bg-gray-200 rounded-xl"
+              className="group relative p-4 flex flex-col md:flex-row justify-between items-start hover:bg-gray-200 rounded-xl cursor-pointer -ml-16 pl-16"
             >
               {/* Timeline Dot */}
-              <div className="absolute left-0 top-6 w-4 h-4 rounded-full bg-neutral-400 border-2 border-white transform -translate-x-1.5" />
+              <div className="absolute w-4 h-4 rounded-full bg-neutral-400 border-2 border-white" style={{ left: '14px', top: '24px', transform: 'translate(-50%, -50%)' }} />
 
               {/* Content */}
               <div className="flex gap-4 flex-col md:flex-row flex-1">
