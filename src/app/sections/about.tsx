@@ -125,8 +125,8 @@ export function About() {
             </TextAnimate>
             <ul className="space-y-1 text-md pl-2">
               {[
-                "🔭 SWE Intern @ Mastercard",
-                "🎥 Dev @ nwPlus",
+                "💳 SWE Intern @ Mastercard",
+                "👨‍💻 Dev @ nwPlus",
                 "👨‍💻 working on cloud native projects!",
                 "🧠 exploring and learning Swift!",
               ].map((item, i) => (

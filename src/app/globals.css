@@ -137,7 +137,7 @@
   [role="button"],
   [role="link"],
   label {
-    cursor: none !important;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"><circle cx="0.5" cy="0.5" r="0.5" fill="transparent"/></svg>') 0 0, auto !important;
   }
 }
 
