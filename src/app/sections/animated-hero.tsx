@@ -27,17 +27,18 @@ export function InteractiveGridPatternDemo() {
 
        {/* Desktop - always rendered but hidden on mobile */}
        <div className="relative hidden md:block h-[90vmin] w-[100vmin]">
-        <InteractiveGridPattern
-          width={60}
-          height={60}
-          squares={[40,30]}
-          rowOffset={0}
-          colOffset={0}
+         <InteractiveGridPattern
+          width={100}
+          height={100}
+          squares={[30,30]}
+          rowOffset={-1}
+          colOffset={1}
           className={cn(
             "border-0",
             "absolute inset-0 h-full w-full",
-            "[mask-image:radial-gradient(60%_60%_at_50%_50%,black_60%,transparent_100%)]",
-            "skew-y-12 opacity-70"
+            "[mask-image:radial-gradient(45%_45%_at_50%_50%,black_60%,transparent_100%)]",
+            "skew-y-12 opacity-70",
+            "[transform-origin:center] scale-125"
           )}
           squaresClassName="stroke-foreground/40"
         />

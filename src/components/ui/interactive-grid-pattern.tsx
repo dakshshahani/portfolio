@@ -151,9 +151,9 @@ export function InteractiveGridPattern({
                    textAnchor="middle"
                    dominantBaseline="middle"
                    className="pointer-events-none select-none fill-foreground"
-                   style={{ fontSize: `${Math.min(width, height) * 0.84}px`, fontWeight: 500 }}
-                  initial={{ opacity: 0, translateY: 10 }}
-                  animate={{ opacity: 1, translateY: 0 }}
+                   style={{ fontSize: `${Math.min(width, height) * 0.90}px`, fontWeight: 500 }}
+                  initial={{ opacity: 0, translateY: 15 }}
+                  animate={{ opacity: 1, translateY: 5 }}
                   transition={{ delay: letter.charIndex * 0.04, duration: 0.4, ease: "easeOut" }}
                 >
                   {letter.letter}
@@ -165,7 +165,7 @@ export function InteractiveGridPattern({
                    textAnchor="middle"
                    dominantBaseline="middle"
                    className="pointer-events-none select-none fill-foreground"
-                   style={{ fontSize: `${Math.min(width, height) * 0.96}px`, fontWeight: 500 }}
+                   style={{ fontSize: `${Math.min(width, height) * 1.00}px`, fontWeight: 500 }}
                 >
                   {letter.letter}
                 </text>
