@@ -25,12 +25,14 @@ export function InteractiveGridPatternDemo() {
         />
       </div>
 
-      {/* Desktop - always rendered but hidden on mobile */}
-      <div className="relative hidden md:block h-[90vmin] w-[100vmin]">
+       {/* Desktop - always rendered but hidden on mobile */}
+       <div className="relative hidden md:block h-[90vmin] w-[100vmin]">
         <InteractiveGridPattern
-          squares={[30,30]}
-          rowOffset={-5}
-          colOffset={-2}
+          width={60}
+          height={60}
+          squares={[40,30]}
+          rowOffset={0}
+          colOffset={0}
           className={cn(
             "border-0",
             "absolute inset-0 h-full w-full",
@@ -39,7 +41,7 @@ export function InteractiveGridPatternDemo() {
           )}
           squaresClassName="stroke-foreground/40"
         />
-      </div>
+       </div>
     </section>
   )
 }

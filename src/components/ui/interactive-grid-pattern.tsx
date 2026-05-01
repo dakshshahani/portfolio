@@ -104,8 +104,8 @@ export function InteractiveGridPattern({
 
   return (
     <svg
-      width={width * horizontal}
-      height={height * vertical}
+      viewBox={`0 0 ${width * horizontal} ${height * vertical}`}
+      preserveAspectRatio="xMidYMid meet"
       className={cn(
         "absolute inset-0 h-full w-full border border-gray-400/30",
         className
@@ -145,13 +145,13 @@ export function InteractiveGridPattern({
             )}
             {letter && (
               animate ? (
-                <motion.text
-                  x={x + width / 2}
-                  y={y + height / 2}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  className="pointer-events-none select-none fill-foreground"
-                  style={{ fontSize: `${Math.min(width, height) * .7}px`, fontWeight: 500 }}
+                 <motion.text
+                   x={x + width / 2}
+                   y={y + height / 2}
+                   textAnchor="middle"
+                   dominantBaseline="middle"
+                   className="pointer-events-none select-none fill-foreground"
+                   style={{ fontSize: `${Math.min(width, height) * 0.84}px`, fontWeight: 500 }}
                   initial={{ opacity: 0, translateY: 10 }}
                   animate={{ opacity: 1, translateY: 0 }}
                   transition={{ delay: letter.charIndex * 0.04, duration: 0.4, ease: "easeOut" }}
@@ -159,13 +159,13 @@ export function InteractiveGridPattern({
                   {letter.letter}
                 </motion.text>
               ) : (
-                <text
-                  x={x + width / 2}
-                  y={y + height / 2}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  className="pointer-events-none select-none fill-foreground"
-                  style={{ fontSize: `${Math.min(width, height) * 0.8}px`, fontWeight: 500 }}
+                 <text
+                   x={x + width / 2}
+                   y={y + height / 2}
+                   textAnchor="middle"
+                   dominantBaseline="middle"
+                   className="pointer-events-none select-none fill-foreground"
+                   style={{ fontSize: `${Math.min(width, height) * 0.96}px`, fontWeight: 500 }}
                 >
                   {letter.letter}
                 </text>
