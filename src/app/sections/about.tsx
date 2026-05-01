@@ -127,7 +127,7 @@ export function About() {
               {[
                 "💳 SWE Intern @ Mastercard",
                 "👨‍💻 Dev @ nwPlus",
-                "👨‍💻 working on cloud native projects!",
+                "💻 working on cloud native projects!",
                 "🧠 exploring and learning Swift!",
               ].map((item, i) => (
                 <TextAnimate
@@ -157,7 +157,7 @@ export function About() {
             </TextAnimate>
             <ul className="space-y-1 text-md pl-2">
               {[
-                "💻 Web Development",
+                "🌐 Web Development",
                 "🎨 Motion Design",
                 "📸 Photography",
                 "🎥 Video Editing",
