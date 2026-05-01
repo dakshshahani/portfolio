@@ -108,7 +108,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
                     target="_blank"
                     className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 text-black hover:bg-neutral-700 hover:text-white"
                   >
-                    {active.ctaText}
+                    View Github
                   </motion.a>
                 </div>
                 <div className="pt-4 relative px-4">
@@ -155,13 +155,13 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
             </div>
             <motion.a
               layoutId={`button-${card.title}-${id}`}
-              href={card.ctaLink}
+            //   href={card.ctaLink}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
+            //   onClick={(e) => e.stopPropagation()}
               className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 text-black group-hover:bg-neutral-700 group-hover:text-white mt-4 md:mt-0"
             >  
-              {card.ctaText}
+              View Project
             </motion.a>
           </motion.div>
         ))}
