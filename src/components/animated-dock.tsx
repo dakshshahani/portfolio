@@ -59,7 +59,7 @@ export function DockDemo() {
         iconSize={36}
         iconMagnification={52}
         iconDistance={120}
-        className="border border-border/60 bg-background/70"
+        className="border border-border/60 bg-background/70 dark:bg-background/80"
       >
         {navItems.map(({ href, icon: Icon, label }) => (
           <DockIcon key={href}>
@@ -69,12 +69,12 @@ export function DockDemo() {
                   href={href}
                   aria-label={label}
                   onClick={triggerNavHaptic}
-                  className="group flex items-center justify-center rounded-full p-2 transition-colors hover:bg-muted"
+                  className="group flex items-center justify-center rounded-full p-2 transition-colors hover:bg-muted text-foreground"
                 >
                   <Icon className="size-4" />
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="bottom" sideOffset={14}>
+              <TooltipContent side="bottom" sideOffset={14} className="bg-popover text-popover-foreground">
                 {label}
               </TooltipContent>
             </Tooltip>

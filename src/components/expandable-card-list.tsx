@@ -106,7 +106,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
                      layoutId={`button-${active.title}-${id}`}
                      href={active.ctaLink}
                      target="_blank"
-                     className="px-4 py-2 text-sm rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                     className="px-4 py-2 text-sm rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-primary/80 hover:text-primary-foreground dark:hover:bg-primary/90 dark:hover:text-primary-foreground transition-colors"
                    >
                     View Github
                   </motion.a>
@@ -159,7 +159,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
                target="_blank"
                rel="noopener noreferrer"
              //   onClick={(e) => e.stopPropagation()}
-               className="px-4 py-2 text-sm rounded-full font-bold bg-secondary text-secondary-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors mt-4 md:mt-0"
+               className="px-4 py-2 text-sm rounded-full font-bold bg-secondary text-secondary-foreground group-hover:bg-primary/80 group-hover:text-primary-foreground dark:group-hover:bg-primary/90 dark:group-hover:text-primary-foreground transition-colors mt-4 md:mt-0"
              >
               View Project
             </motion.a>

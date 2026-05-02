@@ -77,7 +77,7 @@ export function About() {
             by="word"
             delay={0}
             once
-            className="text-5xl md:text-6xl font-bold"
+            className="text-5xl md:text-6xl font-bold text-foreground"
           >
             {"Hey, I'm Daksh 👨‍💻"}
           </TextAnimate>
@@ -89,7 +89,7 @@ export function About() {
               by="text"
               delay={0.3}
               once
-              className="text-3xl font-light"
+              className="text-3xl font-light text-foreground"
             >
               {"I'm a"}
             </TextAnimate>
@@ -105,7 +105,7 @@ export function About() {
               morphTime={1.2}
               cooldownTime={1.6}
               animationDelay={0.2}
-              className="text-3xl md:text-3xl h-10"
+              className="text-3xl md:text-3xl h-10 text-foreground"
             />
           </div>
         </div>
@@ -119,11 +119,11 @@ export function About() {
               by="text"
               delay={0.5}
               once
-              className="py-2 text-2xl"
+              className="py-2 text-2xl text-foreground"
             >
               {"Currently I'm .."}
             </TextAnimate>
-            <ul className="space-y-1 text-md pl-2">
+            <ul className="space-y-1 text-md pl-2 text-muted-foreground">
               {[
                 "💳 SWE Intern @ Mastercard",
                 "👨‍💻 Dev @ nwPlus",
@@ -137,6 +137,7 @@ export function About() {
                   by="text"
                   delay={0.6 + i * 0.08}
                   once
+                  className="text-foreground"
                 >
                   {item}
                 </TextAnimate>
@@ -151,11 +152,11 @@ export function About() {
               by="text"
               delay={1.0}
               once
-              className="py-2 text-2xl"
+              className="py-2 text-2xl text-foreground"
             >
               {"I'm passionate about..."}
             </TextAnimate>
-            <ul className="space-y-1 text-md pl-2">
+            <ul className="space-y-1 text-md pl-2 text-muted-foreground">
               {[
                 "🌐 Web Development",
                 "🎨 Motion Design",
@@ -169,6 +170,7 @@ export function About() {
                   by="text"
                   delay={1.1 + i * 0.08}
                   once
+                  className="text-foreground"
                 >
                   {item}
                 </TextAnimate>
@@ -183,11 +185,11 @@ export function About() {
               by="text"
               delay={1.45}
               once
-              className="py-2 text-2xl"
+              className="py-2 text-2xl text-foreground"
             >
               {"I also like..."}
             </TextAnimate>
-            <ul className="space-y-1 text-md pl-2">
+            <ul className="space-y-1 text-md pl-2 text-muted-foreground">
               {["🏐 Volleyball", "🏎️ F1", "🍵 Matcha"].map((item, i) => (
                 <TextAnimate
                   key={item}
@@ -196,6 +198,7 @@ export function About() {
                   by="text"
                   delay={1.55 + i * 0.08}
                   once
+                  className="text-foreground"
                 >
                   {item}
                 </TextAnimate>

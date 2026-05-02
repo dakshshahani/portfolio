@@ -7,24 +7,25 @@ export function InteractiveHoverButton({
   className,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
+return (
     <button
       className={cn(
         "group bg-background relative w-auto cursor-pointer overflow-hidden rounded-full border p-2 px-6 text-center font-semibold",
         className
       )}
+      style={{ borderColor: 'var(--button-border)' }}
       {...props}
     >
-       <div className="flex items-center justify-center gap-2">
-         <div className="bg-primary h-2 w-2 rounded-full transition-all duration-300 group-hover:scale-[100.8]"></div>
-         <span className="inline-block transition-all duration-300 group-hover:translate-x-6 group-hover:opacity-0">
-           {children}
-         </span>
-       </div>
-       <div className="text-primary-foreground absolute top-0 z-10 flex h-full w-full translate-x-6 items-center justify-center gap-2 opacity-0 transition-all duration-300 group-hover:-translate-x-2 group-hover:opacity-100">
-         <span>{children}</span>
-         <ArrowRight size={16} />
-       </div>
+      <div className="flex items-center justify-center gap-2">
+        <div className="bg-primary h-2 w-2 rounded-full transition-all duration-300 group-hover:scale-[100.8]"></div>
+        <span className="inline-block text-foreground transition-all duration-300 group-hover:translate-x-8 group-hover:opacity-0">
+          {children}
+        </span>
+      </div>
+      <div className="text-primary-foreground absolute top-0 z-10 flex h-full w-full translate-x-8 items-center justify-center gap-1 opacity-0 transition-all duration-300 group-hover:-translate-x-3 group-hover:opacity-100">
+        <span>{children}</span>
+        <ArrowRight size={14} />
+      </div>
     </button>
   )
 }

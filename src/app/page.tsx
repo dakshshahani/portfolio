@@ -35,9 +35,9 @@ export default function HomePage() {
 
       {/* 🎨 Theme Toggler */}
       <AnimatedThemeToggler
-        className="fixed bottom-6 right-6 z-50 p-2 rounded-lg bg-secondary hover:bg-secondary/80 text-secondary-foreground transition-colors duration-200 dark:bg-secondary dark:text-secondary-foreground dark:hover:bg-secondary/80"
+        className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-secondary hover:bg-secondary/70 text-secondary-foreground transition-colors duration-200 dark:bg-secondary dark:text-secondary-foreground dark:hover:bg-secondary/90"
         variant="circle"
-        duration={400}
+        duration={600}
       />
     </div>
   );

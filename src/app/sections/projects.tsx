@@ -74,7 +74,7 @@ export function Projects() {
         )
     },
     {
-      title: "komo",
+      title: "komo - 🏆 Hack Western 2025",
       description: "Unified search platform for enterprise workspaces",
       src: "/komo.png",
       ctaText: "View Project",
@@ -170,7 +170,7 @@ export function Projects() {
       id="projects"
       className="py-24 px-4 bg-transparent flex flex-col items-center"
     >
-      <h3 className="text-3xl font-semibold mb-8">Projects</h3>
+      <h3 className="text-3xl font-semibold mb-8 text-foreground">Projects</h3>
       <div className="w-full max-w-5xl">
         <ExpandableCardList cards={projectCards} />
       </div>

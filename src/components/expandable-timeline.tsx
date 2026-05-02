@@ -149,7 +149,7 @@ export default function ExpandableTimeline({
       {/* Timeline List View */}
       <div className="max-w-xl mx-auto w-full relative">
          {/* Timeline Line */}
-         <div className="absolute left-3 top-0 bottom-0 w-1 bg-border-subtle" />
+         <div className="absolute left-3 top-0 bottom-0 w-1 bg-border" />
 
         {/* Timeline Items */}
         <div className="space-y-6 pl-16">
@@ -161,7 +161,7 @@ export default function ExpandableTimeline({
                 className="group relative p-4 flex flex-col md:flex-row justify-between items-start hover:bg-surface-hover dark:hover:bg-surface-hover rounded-xl cursor-pointer -ml-16 pl-16"
               >
                 {/* Timeline Dot */}
-                <div className="absolute w-4 h-4 rounded-full bg-neutral-700 border-2 border-modal-bg" style={{ left: '14px', top: '24px', transform: 'translate(-50%, -50%)' }} />
+                <div className="absolute w-4 h-4 rounded-full bg-primary border-2 border-background" style={{ left: '14px', top: '24px', transform: 'translate(-50%, -50%)' }} />
 
                {/* Content */}
                <div className="flex gap-4 flex-col md:flex-row flex-1 items-start md:items-center justify-between w-full">
