@@ -24,7 +24,7 @@ export function CursorFollower(): React.ReactElement {
         transform: `translate(${position.x - 10}px, ${position.y - 10}px)`,
       }}
     >
-      <div className="w-5 h-5 rounded-full bg-blue-500/50 mix-blend-difference transition-transform duration-75 ease-out" />
+      <div className="w-5 h-5 rounded-full bg-primary/50 mix-blend-difference transition-transform duration-75 ease-out" />
     </div>
   );
 }

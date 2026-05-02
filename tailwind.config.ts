@@ -52,6 +52,13 @@ const config: Config = {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        overlay: "var(--overlay)",
+        "modal-bg": "var(--modal-bg)",
+        "modal-foreground": "var(--modal-foreground)",
+        "border-subtle": "var(--border-subtle)",
+        "surface-hover": "var(--surface-hover)",
+        "neutral-700": "var(--neutral-700)",
+        "neutral-800": "var(--neutral-800)",
       },
 
       // rounded‑corner tokens

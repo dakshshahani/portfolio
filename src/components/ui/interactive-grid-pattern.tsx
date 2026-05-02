@@ -107,7 +107,7 @@ export function InteractiveGridPattern({
       viewBox={`0 0 ${width * horizontal} ${height * vertical}`}
       preserveAspectRatio="xMidYMid meet"
       className={cn(
-        "absolute inset-0 h-full w-full border border-gray-400/30",
+        "absolute inset-0 h-full w-full border border-border-subtle",
         className
       )}
       {...props}

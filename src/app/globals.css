@@ -36,6 +36,11 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-overlay: var(--overlay);
+  --color-modal-bg: var(--modal-bg);
+  --color-modal-foreground: var(--modal-foreground);
+  --color-border-subtle: var(--border-subtle);
+  --color-surface-hover: var(--surface-hover);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -75,6 +80,14 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  /* Semantic colors for overlays and modals */
+  --overlay: oklch(0 0 0 / 0.35);
+  --modal-bg: oklch(1 0 0);
+  --modal-foreground: oklch(0.129 0.042 264.695);
+  --border-subtle: oklch(0.929 0.013 255.508);
+  --surface-hover: oklch(0.95 0.004 255.508);
+  --neutral-700: oklch(0.27 0.014 256.360);
+  --neutral-800: oklch(0.2 0.011 256.360);
 }
 
 .dark {
@@ -109,13 +122,22 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Semantic colors for overlays and modals - dark mode */
+  --overlay: oklch(0 0 0 / 0.6);
+  --modal-bg: oklch(0.208 0.042 265.755);
+  --modal-foreground: oklch(0.984 0.003 247.858);
+  --border-subtle: oklch(1 0 0 / 10%);
+  --surface-hover: oklch(0.279 0.041 260.031);
+  --neutral-700: oklch(0.27 0.014 256.360);
+  --neutral-800: oklch(0.2 0.011 256.360);
 }
 
 @layer utilities {
   html,
   body {
     scroll-behavior: smooth;
-    background-color: white;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
