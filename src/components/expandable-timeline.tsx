@@ -81,7 +81,7 @@ export default function ExpandableTimeline({
                     <motion.div
                       layoutId={`card-${activeIndex}-${id}`}
                       ref={ref}
-                      className="h-full md:h-fit md:max-h-[90%] flex flex-col bg-modal-bg sm:rounded-3xl overflow-hidden"
+                      className="h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-3xl overflow-hidden"
                       style={{ width: `${imageWidth}px`, maxWidth: '90vw' }}
                     >
                        {/* Image Header */}
@@ -101,15 +101,15 @@ export default function ExpandableTimeline({
                         {/* Title, Company, Location, Date */}
                         <div className="flex justify-between items-start p-4 gap-4">
                          <div className="flex-1">
-                            <motion.h3
+<motion.h3
                               layoutId={`title-${activeIndex}-${id}`}
-                              className="font-bold text-modal-foreground text-2xl"
+                              className="font-bold text-card-foreground text-2xl"
                             >
-                             {active.title}
-                           </motion.h3>
+                              {active.title}
+                            </motion.h3>
                             <motion.p
                               layoutId={`company-${activeIndex}-${id}`}
-                              className="text-modal-foreground/70 text-sm"
+                              className="text-card-foreground/70 text-sm"
                             >
                              {active.company} • {active.location}
                            </motion.p>
@@ -130,7 +130,7 @@ export default function ExpandableTimeline({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="text-modal-foreground/70 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                            className="text-card-foreground/70 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                           >
                            {typeof active.content === "function"
                              ? active.content()
@@ -222,7 +222,7 @@ export const CloseIcon = () => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-4 w-4 text-modal-foreground"
+      className="h-4 w-4 text-card-foreground"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M18 6l-12 12" />
