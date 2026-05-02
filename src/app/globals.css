@@ -178,3 +178,22 @@
     animation: none;
     mix-blend-mode: normal;
 }
+
+/* Smooth cursor dark mode styles */
+.cursor-wrapper .cursor-fill {
+  fill: hsl(var(--foreground));
+  transition: fill 0.2s ease;
+}
+
+.cursor-wrapper .cursor-stroke {
+  stroke: hsl(var(--foreground));
+  transition: stroke 0.2s ease;
+}
+
+.dark .cursor-wrapper .cursor-fill {
+  fill: white;
+}
+
+.dark .cursor-wrapper .cursor-stroke {
+  stroke: black;
+}

@@ -27,15 +27,16 @@ const DefaultCursorSVG: FC = () => {
       viewBox="0 0 50 54"
       fill="none"
       style={{ scale: 0.5 }}
+      className="cursor-fill"
     >
       <g filter="url(#filter0_d_91_7928)">
         <path
           d="M42.6817 41.1495L27.5103 6.79925C26.7269 5.02557 24.2082 5.02558 23.3927 6.79925L7.59814 41.1495C6.75833 42.9759 8.52712 44.8902 10.4125 44.1954L24.3757 39.0496C24.8829 38.8627 25.4385 38.8627 25.9422 39.0496L39.8121 44.1954C41.6849 44.8902 43.4884 42.9759 42.6817 41.1495Z"
-          fill="currentColor"
+          className="cursor-fill"
         />
         <path
           d="M43.7146 40.6933L28.5431 6.34306C27.3556 3.65428 23.5772 3.69516 22.3668 6.32755L6.57226 40.6778C5.3134 43.4156 7.97238 46.298 10.803 45.2549L24.7662 40.109C25.0221 40.0147 25.2999 40.0156 25.5494 40.1082L39.4193 45.254C42.2261 46.2953 44.9254 43.4347 43.7146 40.6933Z"
-          stroke="currentColor"
+          className="cursor-stroke"
           strokeWidth={2.25825}
         />
       </g>
@@ -81,7 +82,7 @@ const DefaultCursorSVG: FC = () => {
 }
 
 export function SmoothCursor({
-  cursor = <DefaultCursorSVG />,
+  cursor,
   springConfig = {
     damping: 45,
     stiffness: 400,
@@ -130,7 +131,6 @@ export function SmoothCursor({
     const smoothMouseMove = (e: MouseEvent) => {
       const currentPos = { x: e.clientX, y: e.clientY }
       
-      // On first mouse move, set position directly without animation
       if (!hasMoved.current) {
         cursorX.jump(currentPos.x)
         cursorY.jump(currentPos.y)
@@ -191,32 +191,30 @@ export function SmoothCursor({
     }
   }, [cursorX, cursorY, rotation, scale])
 
-  // Don't render until we have initial position
   if (!hasPosition) {
     return null
   }
 
-   return (
-     <motion.div
-       style={{
-         position: "fixed",
-         left: cursorX,
-         top: cursorY,
-         translateX: "-50%",
-         translateY: "-50%",
-         rotate: rotation,
-         scale: scale,
-         zIndex: 100,
-         pointerEvents: "none",
-         willChange: "transform",
-         color: "hsl(var(--foreground))",
-       }}
-       className="text-foreground"
-       initial={{ opacity: 0 }}
-       animate={{ opacity: 1 }}
-       transition={{ duration: 0.05 }}
-     >
-       {cursor}
-     </motion.div>
-   )
+  return (
+    <motion.div
+      style={{
+        position: "fixed",
+        left: cursorX,
+        top: cursorY,
+        translateX: "-50%",
+        translateY: "-50%",
+        rotate: rotation,
+        scale: scale,
+        zIndex: 100,
+        pointerEvents: "none",
+        willChange: "transform",
+      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.05 }}
+      className="cursor-wrapper"
+    >
+      {cursor || <DefaultCursorSVG />}
+    </motion.div>
+  )
 }
