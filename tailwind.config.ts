@@ -3,8 +3,8 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 const config: Config = {
-  // disable dark mode
-  darkMode: false,
+  // enable dark mode using class strategy
+  darkMode: "class",
 
   // tell Tailwind where to look for class names
   content: [
