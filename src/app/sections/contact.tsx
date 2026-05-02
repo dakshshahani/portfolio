@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 
 export function Contact() {
@@ -27,9 +27,9 @@ export function Contact() {
         .
       </p>
        <div className="flex gap-4 items-center">
-                    <Button asChild>
-        <a href="mailto:dakshitshahani@gmail.com">Say Hello 👋</a>
-      </Button>
+                    <InteractiveHoverButton onClick={() => window.location.href = 'mailto:dakshitshahani@gmail.com'}>
+         Say Hello 👋
+       </InteractiveHoverButton>
                   <a
                     href="https://github.com/dakshshahani"
                     target="_blank"
