@@ -27,7 +27,7 @@ export function Contact() {
         .
       </p>
        <div className="flex gap-4 items-center">
-                    <InteractiveHoverButton onClick={() => window.location.href = 'mailto:dakshitshahani@gmail.com'}>
+                    <InteractiveHoverButton className="p-1 px-3 text-sm" onClick={() => window.location.href = 'mailto:dakshitshahani@gmail.com'}>
          Say Hello 👋
        </InteractiveHoverButton>
                   <a
