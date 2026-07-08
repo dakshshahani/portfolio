@@ -17,8 +17,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "types": [
-      "react",
-      "react-native"
+      "react"
     ],
     "incremental": true,
     "plugins": [
