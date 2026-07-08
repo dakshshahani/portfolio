@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { Experience } from "@/types/experience";
+import { CloseIcon } from "@/components/close-icon";
 
 interface ExpandableTimelineProps {
   experiences: Experience[];
@@ -12,15 +14,14 @@ interface ExpandableTimelineProps {
 export default function ExpandableTimeline({
   experiences,
 }: ExpandableTimelineProps) {
-  const [active, setActive] = useState<Experience | boolean | null>(null);
-  const [imageWidth, setImageWidth] = useState<number>(600);
+  const [active, setActive] = useState<Experience | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setActive(false);
+        setActive(null);
       }
     }
 
@@ -79,23 +80,22 @@ export default function ExpandableTimeline({
                      <CloseIcon />
                    </motion.button>
                     <motion.div
-                      layoutId={`card-${activeIndex}-${id}`}
-                      ref={ref}
-                      className="h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-3xl overflow-hidden"
-                      style={{ width: `${imageWidth}px`, maxWidth: '90vw' }}
-                    >
-                       {/* Image Header */}
-                       <motion.div layoutId={`image-${activeIndex}-${id}`} className="flex items-center justify-center min-h-[200px]">
-                         <img
-                           src={active.src}
-                           alt={active.title}
-                           onLoad={(e) => {
-                             const img = e.currentTarget;
-                             setImageWidth(img.offsetWidth);
-                           }}
-                           className="w-full sm:rounded-tr-lg sm:rounded-tl-lg object-contain object-top"
-                         />
-                     </motion.div>
+                       layoutId={`card-${activeIndex}-${id}`}
+                       ref={ref}
+                       className="w-full max-w-[600px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-3xl overflow-hidden"
+                     >
+                        {/* Image Header */}
+                        <motion.div layoutId={`image-${activeIndex}-${id}`}>
+                          <Image
+                            src={active.src}
+                            alt={active.title}
+                            width={600}
+                            height={400}
+                            sizes="(max-width: 600px) 100vw, 600px"
+                            className="sm:rounded-tr-lg sm:rounded-tl-lg"
+                            style={{ width: "100%", height: "auto" }}
+                          />
+                      </motion.div>
 
                      <div>
                         {/* Title, Company, Location, Date */}
@@ -179,15 +179,16 @@ export default function ExpandableTimeline({
                      {exp.company}
                    </motion.p>
                  </div>
-                 {/* Thumbnail Image */}
-                 <motion.img
-                   layoutId={`thumbnail-${index}-${id}`}
-                   src={exp.logo}
-                   alt={exp.title}
-                   width={60}
-                   height={60}
-                   className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
-                 />
+                  {/* Thumbnail Image */}
+                  <motion.div layoutId={`thumbnail-${index}-${id}`} className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 relative">
+                    <Image
+                      src={exp.logo}
+                      alt={exp.title}
+                      fill
+                      sizes="64px"
+                      className="object-cover rounded-lg"
+                    />
+                  </motion.div>
                </div>
 
              </motion.div>
@@ -198,35 +199,3 @@ export default function ExpandableTimeline({
   );
 }
 
-export const CloseIcon = () => {
-  return (
-    <motion.svg
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-        transition: {
-          duration: 0.05,
-        },
-      }}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-4 w-4 text-card-foreground"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M18 6l-12 12" />
-      <path d="M6 6l12 12" />
-    </motion.svg>
-  );
-};

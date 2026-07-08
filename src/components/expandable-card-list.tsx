@@ -1,25 +1,25 @@
 "use client";
 
-import React, { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { ExpandableCard } from "@/types/expandable-card";
+import { CloseIcon } from "@/components/close-icon";
 
 interface ExpandableCardListProps {
   cards: ExpandableCard[];
 }
 
 export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
-  const [active, setActive] = useState<ExpandableCard | boolean | null>(
-    null
-  );
+  const [active, setActive] = useState<ExpandableCard | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setActive(false);
+        setActive(null);
       }
     }
 
@@ -75,13 +75,13 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
               ref={ref}
               className="w-full max-w-[600px]  h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-3xl overflow-hidden"
             >
-              <motion.div layoutId={`image-${active.title}-${id}`}>
-                <img
-                  width={200}
-                  height={200}
+              <motion.div layoutId={`image-${active.title}-${id}`} className="relative w-full h-80 sm:rounded-tr-lg sm:rounded-tl-lg overflow-hidden">
+                <Image
                   src={active.src}
                   alt={active.title}
-                  className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                  fill
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  className="object-cover object-top sm:rounded-tr-lg sm:rounded-tl-lg"
                 />
               </motion.div>
 
@@ -117,7 +117,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-card-foreground/70 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-autot)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-card-foreground/70 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                   >
                     {typeof active.content === "function"
                       ? active.content()
@@ -130,7 +130,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
         ) : null}
       </AnimatePresence>
       <ul className="max-w-2xl mx-auto w-full gap-4">
-        {cards.map((card, index) => (
+        {cards.map((card) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}
             key={`card-${card.title}-${id}`}
@@ -155,10 +155,8 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
             </div>
             <motion.a
                layoutId={`button-${card.title}-${id}`}
-             //   href={card.ctaLink}
                target="_blank"
                rel="noopener noreferrer"
-             //   onClick={(e) => e.stopPropagation()}
                className="px-4 py-2 text-sm rounded-full font-bold bg-secondary text-secondary-foreground group-hover:bg-primary/80 group-hover:text-primary-foreground dark:group-hover:bg-primary/90 dark:group-hover:text-primary-foreground transition-colors mt-4 md:mt-0"
              >
               View Project
@@ -170,35 +168,3 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
   );
 }
 
-export const CloseIcon = () => {
-  return (
-    <motion.svg
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-        transition: {
-          duration: 0.05,
-        },
-      }}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-4 w-4 text-card-foreground"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M18 6l-12 12" />
-      <path d="M6 6l12 12" />
-    </motion.svg>
-  );
-};
