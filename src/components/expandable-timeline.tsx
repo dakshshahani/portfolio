@@ -59,31 +59,31 @@ export default function ExpandableTimeline({
                const activeIndex = experiences.findIndex((exp) => exp === active);
                return (
                  <>
-                   <motion.button
-                     key={`button-${activeIndex}-${id}`}
-                     layout
-                     initial={{
-                       opacity: 0,
-                     }}
-                     animate={{
-                       opacity: 1,
-                     }}
-                     exit={{
-                       opacity: 0,
-                       transition: {
-                         duration: 0.05,
-                       },
-                     }}
-                      className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-secondary rounded-full h-6 w-6"
-                     onClick={() => setActive(null)}
-                   >
-                     <CloseIcon />
-                   </motion.button>
-                    <motion.div
+                   <motion.div
                        layoutId={`card-${activeIndex}-${id}`}
                        ref={ref}
-                       className="w-full max-w-[600px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-3xl overflow-hidden"
+                       className="relative w-full max-w-[600px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-3xl overflow-hidden"
                      >
+                      <motion.button
+                        key={`button-${activeIndex}-${id}`}
+                        layout
+                        initial={{
+                          opacity: 0,
+                        }}
+                        animate={{
+                          opacity: 1,
+                        }}
+                        exit={{
+                          opacity: 0,
+                          transition: {
+                            duration: 0.05,
+                          },
+                        }}
+                        className="absolute top-2 right-2 z-20 flex lg:hidden items-center justify-center bg-secondary rounded-full h-6 w-6"
+                        onClick={() => setActive(null)}
+                      >
+                        <CloseIcon />
+                      </motion.button>
                         {/* Image Header */}
                         <motion.div layoutId={`image-${activeIndex}-${id}`}>
                           <Image
@@ -149,19 +149,19 @@ export default function ExpandableTimeline({
       {/* Timeline List View */}
       <div className="max-w-xl mx-auto w-full relative">
          {/* Timeline Line */}
-         <div className="absolute left-3 top-0 bottom-0 w-1 bg-border" />
+         <div className="absolute left-2 top-0 bottom-0 w-1 bg-border" />
 
         {/* Timeline Items */}
-        <div className="space-y-6 pl-16">
+        <div className="space-y-6 pl-12">
            {experiences.map((exp, index) => (
               <motion.div
                 key={`${index}-${exp.title}-${id}`}
                 layoutId={`card-${index}-${id}`}
                 onClick={() => setActive(exp)}
-                className="group relative p-4 flex flex-col md:flex-row justify-between items-start hover:bg-surface-hover dark:hover:bg-surface-hover rounded-xl cursor-pointer -ml-16 pl-16"
+                className="group relative p-4 flex flex-col md:flex-row justify-between items-start hover:bg-surface-hover dark:hover:bg-surface-hover rounded-xl cursor-pointer -ml-12 pl-12"
               >
                 {/* Timeline Dot */}
-                <div className="absolute w-4 h-4 rounded-full bg-primary border-2 border-background" style={{ left: '14px', top: '24px', transform: 'translate(-50%, -50%)' }} />
+                <div className="absolute w-4 h-4 rounded-full bg-primary border-2 border-background" style={{ left: '10px', top: '24px', transform: 'translate(-50%, -50%)' }} />
 
                {/* Content */}
                <div className="flex gap-4 flex-col md:flex-row flex-1 items-start md:items-center justify-between w-full">

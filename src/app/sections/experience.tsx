@@ -91,9 +91,9 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="py-24 px-4 bg-transparent flex flex-col items-center"
+      className="py-16 md:py-24 px-4 bg-transparent flex flex-col items-center"
     >
-      <h3 className="text-3xl font-semibold mb-12 text-foreground">Experience</h3>
+      <h3 className="text-3xl font-semibold mb-8 text-foreground">Experience</h3>
       <ExpandableTimeline experiences={experiences} />
     </section>
   );

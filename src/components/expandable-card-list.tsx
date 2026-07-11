@@ -50,31 +50,31 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
       <AnimatePresence>
         {active && typeof active === "object" ? (
           <div className="fixed inset-0  grid place-items-center z-[100]">
-            <motion.button
-              key={`button-${active.title}-${id}`}
-              layout
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-                transition: {
-                  duration: 0.05,
-                },
-              }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-secondary rounded-full h-6 w-6"
-              onClick={() => setActive(null)}
-            >
-              <CloseIcon />
-            </motion.button>
-<motion.div
+            <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[600px]  h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-3xl overflow-hidden"
+              className="relative w-full max-w-[600px]  h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-3xl overflow-hidden"
             >
+              <motion.button
+                key={`button-${active.title}-${id}`}
+                layout
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  transition: {
+                    duration: 0.05,
+                  },
+                }}
+                className="absolute top-2 right-2 z-20 flex lg:hidden items-center justify-center bg-secondary rounded-full h-6 w-6"
+                onClick={() => setActive(null)}
+              >
+                <CloseIcon />
+              </motion.button>
               <motion.div layoutId={`image-${active.title}-${id}`} className="relative w-full h-80 sm:rounded-tr-lg sm:rounded-tl-lg overflow-hidden">
                 <Image
                   src={active.src}
@@ -129,7 +129,7 @@ export default function ExpandableCardList({ cards }: ExpandableCardListProps) {
           </div>
         ) : null}
       </AnimatePresence>
-      <ul className="max-w-2xl mx-auto w-full gap-4">
+      <ul className="max-w-2xl mx-auto w-full flex flex-col gap-4">
         {cards.map((card) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}

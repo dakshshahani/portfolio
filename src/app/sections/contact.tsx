@@ -5,7 +5,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 px-4 bg-transparent text-center flex flex-col items-center gap-6"
+      className="py-16 md:py-24 px-4 bg-transparent text-center flex flex-col items-center gap-6"
     >
       <h3 className="text-3xl font-semibold text-foreground">Get in Touch</h3>
       <p className="text-muted-foreground max-w-md">
@@ -27,7 +27,7 @@ export function Contact() {
         .
       </p>
        <div className="flex gap-4 items-center">
-                    <InteractiveHoverButton className="p-1 px-3 text-sm" onClick={() => window.location.href = 'mailto:dakshitshahani@gmail.com'}>
+                    <InteractiveHoverButton className="py-2 px-4 text-sm" onClick={() => window.location.href = 'mailto:dakshitshahani@gmail.com'}>
          Say Hello 👋
        </InteractiveHoverButton>
                   <a

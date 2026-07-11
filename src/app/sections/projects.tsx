@@ -128,7 +128,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-24 px-4 bg-transparent flex flex-col items-center"
+      className="py-16 md:py-24 px-4 bg-transparent flex flex-col items-center"
     >
       <h3 className="text-3xl font-semibold mb-8 text-foreground">Projects</h3>
       <div className="w-full max-w-5xl">

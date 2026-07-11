@@ -67,7 +67,7 @@ export function About() {
 
       <section
         id="about"
-        className="py-24 md:px-24 px-8 gap-8 flex flex-col md:flex-row md:items-center justify-around"
+        className="pt-12 pb-16 md:py-24 md:px-24 px-6 gap-8 flex flex-col md:flex-row md:items-center justify-around"
       >
         {/* Left: heading + morphing text */}
         <div className="flex flex-col gap-4">
@@ -77,7 +77,7 @@ export function About() {
             by="word"
             delay={0}
             once
-            className="text-5xl md:text-6xl font-bold text-foreground"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground"
           >
             {"Hey, I'm Daksh 👨‍💻"}
           </TextAnimate>
@@ -105,7 +105,7 @@ export function About() {
               morphTime={1.2}
               cooldownTime={1.6}
               animationDelay={0.2}
-              className="text-3xl md:text-3xl h-10 text-foreground"
+              className="text-2xl sm:text-3xl md:text-3xl min-h-12 md:h-10 text-foreground"
             />
           </div>
         </div>
@@ -123,7 +123,7 @@ export function About() {
             >
               {"Currently I'm .."}
             </TextAnimate>
-            <ul className="space-y-1 text-md pl-2 text-muted-foreground">
+            <ul className="space-y-1 text-base pl-2 text-muted-foreground">
               {[
                 "💳 SWE Intern @ Mastercard",
                 "👨‍💻 Dev @ nwPlus",
@@ -156,7 +156,7 @@ export function About() {
             >
               {"I'm passionate about..."}
             </TextAnimate>
-            <ul className="space-y-1 text-md pl-2 text-muted-foreground">
+            <ul className="space-y-1 text-base pl-2 text-muted-foreground">
               {[
                 "🌐 Web Development",
                 "🎨 Motion Design",
@@ -189,7 +189,7 @@ export function About() {
             >
               {"I also like..."}
             </TextAnimate>
-            <ul className="space-y-1 text-md pl-2 text-muted-foreground">
+            <ul className="space-y-1 text-base pl-2 text-muted-foreground">
               {["🏐 Volleyball", "🏎️ F1", "🍵 Matcha"].map((item, i) => (
                 <TextAnimate
                   key={item}
