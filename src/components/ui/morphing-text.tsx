@@ -12,6 +12,7 @@ interface UseMorphingTextOptions {
   morphTime: number
   cooldownTime: number
   isInView: boolean
+  containerRef: React.RefObject<HTMLDivElement | null>
 }
 
 const useMorphingText = ({
@@ -19,6 +20,7 @@ const useMorphingText = ({
   morphTime,
   cooldownTime,
   isInView,
+  containerRef,
 }: UseMorphingTextOptions) => {
   const textIndexRef = useRef(0)
   const morphRef = useRef(0)
@@ -47,8 +49,17 @@ const useMorphingText = ({
 
       current1.textContent = texts[textIndexRef.current % texts.length]
       current2.textContent = texts[(textIndexRef.current + 1) % texts.length]
+
+      // Filter is invisible at fraction boundaries (0 and 1), so toggling
+      // here is safe and keeps stationary text crisp.
+      if (containerRef.current) {
+        const inMorph = fraction > 0 && fraction < 1
+        containerRef.current.style.filter = inMorph
+          ? "url(#threshold) blur(0.6px)"
+          : "none"
+      }
     },
-    [texts]
+    [texts, containerRef]
   )
 
   const doMorph = useCallback(() => {
@@ -78,7 +89,10 @@ const useMorphingText = ({
       current1.style.filter = "none"
       current1.style.opacity = "0%"
     }
-  }, [])
+    if (containerRef.current) {
+      containerRef.current.style.filter = "none"
+    }
+  }, [containerRef])
 
   useEffect(() => {
     let animationFrameId: number
@@ -125,17 +139,22 @@ interface MorphingTextProps {
   animationDelay?: number
 }
 
-const Texts: React.FC<MorphingTextProps & { isInView: boolean }> = ({
+const Texts: React.FC<MorphingTextProps & {
+  isInView: boolean
+  containerRef: React.RefObject<HTMLDivElement | null>
+}> = ({
   texts,
   morphTime,
   cooldownTime,
   isInView,
+  containerRef,
 }) => {
   const { text1Ref, text2Ref } = useMorphingText({
     texts,
     morphTime: morphTime ?? defaultMorphTime,
     cooldownTime: cooldownTime ?? defaultCooldownTime,
     isInView,
+    containerRef,
   })
   return (
     <>
@@ -160,7 +179,7 @@ const SvgFilters: React.FC = () => (
     preserveAspectRatio="xMidYMid slice"
   >
     <defs>
-      <filter id="threshold">
+      <filter id="threshold" x="-50%" y="-50%" width="200%" height="200%">
         <feColorMatrix
           in="SourceGraphic"
           type="matrix"
@@ -210,7 +229,7 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        "relative font-sans font-bold [filter:url(#threshold)_blur(0.6px)]",
+        "relative font-sans font-bold",
         className
       )}
       style={{
@@ -219,11 +238,12 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
         transitionDelay: `${animationDelay}s`,
       }}
     >
-      <Texts 
-        texts={texts} 
-        morphTime={morphTime} 
+      <Texts
+        texts={texts}
+        morphTime={morphTime}
         cooldownTime={cooldownTime}
         isInView={isInView}
+        containerRef={containerRef}
       />
       <SvgFilters />
     </div>
