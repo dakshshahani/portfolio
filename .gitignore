@@ -35,3 +35,6 @@ next-env.d.ts
 
 # opencode
 .omo/
+
+# min-age guard publish-time cache
+.package-age-cache.json
