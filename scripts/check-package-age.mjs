@@ -5,6 +5,8 @@
 //   MIN_PACKAGE_AGE_DAYS=10   quarantine window (0 disables the age check)
 //   NPM_REGISTRY=...          override registry (default https://registry.npmjs.org)
 //   SKIP_MIN_AGE_GUARD=1      bypass entirely (offline CI, deliberate installs)
+//   CI=1 or VERCEL=1           skip automatically (frozen-lockfile installs never
+//                              "update" anything, so the guard adds no protection)
 //
 // Cache: publish times persisted to .package-age-cache.json (gitignored) so
 // repeat installs are fast and offline-capable. A name is re-fetched only when
@@ -22,6 +24,12 @@ const CONCURRENCY = 8;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 if (process.env.SKIP_MIN_AGE_GUARD === "1") process.exit(0);
+
+// Frozen-lockfile installs (Vercel, GitHub Actions, etc.) can't silently update
+// anything, so the quarantine guard is only meaningful on local machines.
+if (process.env.CI === "1" || process.env.CI === "true" || process.env.VERCEL === "1") {
+  process.exit(0);
+}
 
 const cache = loadCache();
 let changed = false;
