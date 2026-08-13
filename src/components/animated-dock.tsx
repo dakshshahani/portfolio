@@ -7,7 +7,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import Link from "next/link"
 import { Briefcase, FolderKanban, Home, Mail, User } from "lucide-react"
 import { useWebHaptics } from "web-haptics/react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform } from "motion/react"
 
 const navItems = [
   { href: "#home", icon: Home, label: "Home" },
