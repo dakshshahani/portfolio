@@ -25,6 +25,10 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
   animate?: boolean
   emojis?: string[] // Customizable emoji array
   emojiProbability?: number // Probability of showing emoji on hover (0-1)
+  /** Text embedded in the grid, line 1 (defaults to the portfolio title). */
+  line1?: string
+  /** Text embedded in the grid, line 2. */
+  line2?: string
 }
 
 // Letters to embed in the grid, centered
@@ -48,6 +52,8 @@ export function InteractiveGridPattern({
   animate = true,
   emojis = ["👨‍💻", "🚀", "💻", "🏎️", "🍵", "🎥", "📸"],
   emojiProbability = 0.10,
+  line1 = LINE1,
+  line2 = LINE2,
   ...props
 }: InteractiveGridPatternProps) {
   const [horizontal, vertical] = squares
@@ -85,20 +91,20 @@ export function InteractiveGridPattern({
   const centerRow1 = Math.floor(vertical / 2) - 1 + rowOffset
   const centerRow2 = Math.floor(vertical / 2) + 1 + rowOffset
 
-  const startCol1 = Math.floor((horizontal - LINE1.length) / 2) + colOffset
-  const startCol2 = Math.floor((horizontal - LINE2.length) / 2) + colOffset
+  const startCol1 = Math.floor((horizontal - line1.length) / 2) + colOffset
+  const startCol2 = Math.floor((horizontal - line2.length) / 2) + colOffset
 
-  for (let i = 0; i < LINE1.length; i++) {
+  for (let i = 0; i < line1.length; i++) {
     const col = startCol1 + i
     if (col >= 0 && col < horizontal) {
-      letterMap.set(centerRow1 * horizontal + col, { letter: LINE1[i], charIndex: i })
+      letterMap.set(centerRow1 * horizontal + col, { letter: line1[i], charIndex: i })
     }
   }
 
-  for (let i = 0; i < LINE2.length; i++) {
+  for (let i = 0; i < line2.length; i++) {
     const col = startCol2 + i
     if (col >= 0 && col < horizontal) {
-      letterMap.set(centerRow2 * horizontal + col, { letter: LINE2[i], charIndex: LINE1.length + i })
+      letterMap.set(centerRow2 * horizontal + col, { letter: line2[i], charIndex: line1.length + i })
     }
   }
 
