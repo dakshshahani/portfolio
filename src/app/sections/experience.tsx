@@ -15,10 +15,8 @@ export function Experience() {
         src: "/mastercard.gif",
         content: () => (
           <div className="space-y-4">
-            <p>
-              Perfomance Engineer. 
-              Details to follow.
-            </p>
+            <p> performance engineering & optimizations 🚀 </p>
+            <p>increasing transactions per second globally ⏱️</p>
           </div>
         ),
       },
