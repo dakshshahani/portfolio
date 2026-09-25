@@ -71,8 +71,9 @@ export function Experience() {
       endDate: "FEB 2023",
       description:
         "Managed a 27-member team to organize Qatar's longest-running TEDx event.",
-      logo: "/tedxlogo.png",
+      logo: "/tedx.png",
       src: "/tedx.png",
+      srcFit: "contain",
       content: () => (
         <div className="space-y-4">
           <p>
