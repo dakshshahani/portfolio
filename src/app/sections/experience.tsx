@@ -8,13 +8,14 @@ export function Experience() {
         company: "Mastercard",
         location: "Vancouver, Canada",
         startDate: "May 2026",
-        endDate: "Present",
+        endDate: "Aug 2026",
         description:
-          "Built and optimized React-Firebase features across multiple web apps, improving load times by 35%.",
+          "DMP Performance Engineering intern focused on performance engineering and optimizations to increase transactions per second globally.",
         logo: "/mastercardlogo.webp",
         src: "/mastercard.gif",
         content: () => (
           <div className="space-y-4">
+            <p> DMP Performance Engineering 💳 </p>
             <p> performance engineering & optimizations 🚀 </p>
             <p>increasing transactions per second globally ⏱️</p>
           </div>

@@ -125,7 +125,7 @@ export function About() {
             </TextAnimate>
             <ul className="space-y-1 text-base pl-2 text-muted-foreground">
               {[
-                "💳 SWE Intern @ Mastercard",
+                "🎓 CS Student @ UBC — taking Fall 2026 classes",
                 "👨‍💻 Dev @ nwPlus",
                 "💻 working on cloud native projects!",
                 "🧠 exploring and learning Swift!",
