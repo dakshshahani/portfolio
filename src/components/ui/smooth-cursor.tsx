@@ -205,7 +205,9 @@ export function SmoothCursor({
         translateY: "-50%",
         rotate: rotation,
         scale: scale,
-        zIndex: 100,
+        // Must sit above all overlays (dialog overlay/content use z-90/z-100)
+        // or the cursor renders behind open modals.
+        zIndex: 200,
         pointerEvents: "none",
         willChange: "transform",
       }}
