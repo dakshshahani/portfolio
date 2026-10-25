@@ -1,4 +1,5 @@
 import ExpandableCardList from "@/components/expandable-card-list";
+import TechStack from "@/components/tech-stack";
 import { ExpandableCard } from "@/types/expandable-card";
 
 export function Projects() {
@@ -16,13 +17,18 @@ export function Projects() {
             your head and describing the change out loud — no prompts, selectors,
             or file names required.
           </p>
-          <div>
-            <p className="font-semibold text-sm mb-2">Tech Stack:</p>
-            <p className="text-sm">
-              Next.js, React, TypeScript, MediaPipe, Jev, Gemini, ElevenLabs,
-              Electron
-            </p>
-          </div>
+          <TechStack
+            items={[
+              "nextjs",
+              "react",
+              "typescript",
+              "mediapipe",
+              "jev",
+              "gemini",
+              "elevenlabs",
+              "electron",
+            ]}
+          />
         </div>
       ),
     },
@@ -37,12 +43,17 @@ export function Projects() {
             <p>
               Scan or upload medication packaging to instantly identify the drug, its active ingredients, side effects, and treatments, with an interactive knowledge graph for exploring related medications.
             </p>
-            <div>
-              <p className="font-semibold text-sm mb-2">Tech Stack:</p>
-              <p className="text-sm">
-                Next.js, React, TailwindCSS, Framer Motion, Sigma.js, Express.js, Google Gemini AI
-              </p>
-            </div>
+            <TechStack
+              items={[
+                "nextjs",
+                "react",
+                "tailwind",
+                "framer",
+                "sigma",
+                "express",
+                "gemini",
+              ]}
+            />
             </div>
         )
     },
@@ -59,12 +70,17 @@ export function Projects() {
             returning instant results with AI‑driven summaries that turn
             scattered data into a single source of truth.
           </p>
-          <div>
-            <p className="font-semibold text-sm mb-2">Tech Stack:</p>
-            <p className="text-sm">
-              Next.js, Gemini, TypeScript, React, TailwindCSS, SQLite, Redux
-            </p>
-          </div>
+          <TechStack
+            items={[
+              "nextjs",
+              "gemini",
+              "typescript",
+              "react",
+              "tailwind",
+              "sqlite",
+              "redux",
+            ]}
+          />
         </div>
       ),
     },
@@ -81,12 +97,17 @@ export function Projects() {
             interconnected knowledge map, making it easy to organize, discover,
             and explore related content.
           </p>
-          <div>
-            <p className="font-semibold text-sm mb-2">Tech Stack:</p>
-            <p className="text-sm">
-              Next.js, Supabase, OpenAI, D3.js, TypeScript, React, TailwindCSS
-            </p>
-          </div>
+          <TechStack
+            items={[
+              "nextjs",
+              "supabase",
+              "openai",
+              "d3",
+              "typescript",
+              "react",
+              "tailwind",
+            ]}
+          />
         </div>
       ),
     },
@@ -102,12 +123,9 @@ export function Projects() {
             AI-based virtual reality therapist reducing mental health stigma
             through immersive and accessible therapy sessions.
           </p>
-          <div>
-            <p className="font-semibold text-sm mb-2">Tech Stack:</p>
-            <p className="text-sm">
-              Unity, C#, OpenAI, ElevenLabs, Express.js, React
-            </p>
-          </div>
+          <TechStack
+            items={["unity", "csharp", "openai", "elevenlabs", "express", "react"]}
+          />
         </div>
       ),
      },
