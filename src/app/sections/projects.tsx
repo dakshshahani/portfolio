@@ -4,6 +4,29 @@ import { ExpandableCard } from "@/types/expandable-card";
 export function Projects() {
   const projectCards: ExpandableCard[] = [
     {
+      title: "Gaze - 🏆 MHacks 2026",
+      description: "Editor you point at with your eyes and direct with your voice",
+      src: "/gaze-about.png",
+      ctaText: "View Project",
+      ctaLink: "https://github.com/dakshshahani/mhacks",
+      content: () => (
+        <div className="space-y-4">
+          <p>
+            Desktop tool that edits frontend code by pointing at an element with
+            your head and describing the change out loud — no prompts, selectors,
+            or file names required.
+          </p>
+          <div>
+            <p className="font-semibold text-sm mb-2">Tech Stack:</p>
+            <p className="text-sm">
+              Next.js, React, TypeScript, MediaPipe, Jev, Gemini, ElevenLabs,
+              Electron
+            </p>
+          </div>
+        </div>
+      ),
+    },
+    {
         title: "MediScan",
         description: "AI-powered medication scanning and analysis tool",
         src:"/mediscan.png",
