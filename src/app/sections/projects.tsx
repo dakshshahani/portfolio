@@ -35,18 +35,8 @@ export function Projects() {
         content: () => (
             <div className="space-y-4">
             <p>
-              MediScan is an AI-powered medication scanning and analysis tool that helps you understand what's in your medicine. Capture or upload photos of medication packaging to instantly identify the medicine, its active ingredients, side effects, and symptoms it treats.
+              Scan or upload medication packaging to instantly identify the drug, its active ingredients, side effects, and treatments, with an interactive knowledge graph for exploring related medications.
             </p>
-            <div>
-              <p className="font-semibold text-sm mb-2">Key Features:</p>
-              <ul className="text-sm list-disc list-inside space-y-1">
-                <li>Medication Scanner - Identify medicines from photos</li>
-                <li>AI-Powered Analysis - Google Gemini AI integration</li>
-                <li>Knowledge Graph - Interactive medication relationships</li>
-                <li>Symptom Search - Find medications by symptoms</li>
-                <li>Fuzzy Search - Intelligent search with Fuse.js</li>
-              </ul>
-            </div>
             <div>
               <p className="font-semibold text-sm mb-2">Tech Stack:</p>
               <p className="text-sm">
@@ -65,11 +55,9 @@ export function Projects() {
       content: () => (
         <div className="space-y-4">
           <p>
-            Komo is a unified search platform that connects all your enterprise
-            and personal workspaces, enabling seamless access to information
-            across multiple tools. It delivers instant results with intelligent
-            summaries and AI‑driven context, turning scattered data into a
-            single source of truth for faster discovery and clarity.
+            Unified search across every enterprise and personal workspace,
+            returning instant results with AI‑driven summaries that turn
+            scattered data into a single source of truth.
           </p>
           <div>
             <p className="font-semibold text-sm mb-2">Tech Stack:</p>
@@ -89,11 +77,9 @@ export function Projects() {
       content: () => (
         <div className="space-y-4">
           <p>
-            WebLink is an intelligent bookmarking system that transforms your
-            saved links into a visual, interconnected knowledge map, making it
-            effortless to organize, discover, and explore related content. It
-            turns scattered web resources into a dynamic network for seamless
-            navigation and insight.
+            Bookmarking system that turns saved links into a visual,
+            interconnected knowledge map, making it easy to organize, discover,
+            and explore related content.
           </p>
           <div>
             <p className="font-semibold text-sm mb-2">Tech Stack:</p>
