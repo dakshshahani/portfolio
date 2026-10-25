@@ -125,27 +125,27 @@ export function Projects() {
         </div>
       ),
      },
-     {
-       title: "AExpressions",
-       description: "AI-powered After Effects expression generator",
-       src: "/aexpressions.png",
-       ctaText: "View Project",
-       ctaLink: "https://github.com/dakshshahani/aexpressions",
-       content: () => (
-         <div className="space-y-4">
-           <p>
-             Web-based tool that generates After Effects expressions from user
-             prompts or AE files, powered by React, TypeScript, and FastAPI.
-             Features built-in expressions and AI integration to streamline
-             motion design workflows for creators.
-           </p>
-           <div>
-             <p className="font-semibold text-sm mb-2">Tech Stack:</p>
-             <p className="text-sm">React, TypeScript, OpenAPI, MongoDB</p>
-           </div>
-         </div>
-       ),
-     },
+    //  {
+    //    title: "AExpressions",
+    //    description: "AI-powered After Effects expression generator",
+    //    src: "/aexpressions.png",
+    //    ctaText: "View Project",
+    //    ctaLink: "https://github.com/dakshshahani/aexpressions",
+    //    content: () => (
+    //      <div className="space-y-4">
+    //        <p>
+    //          Web-based tool that generates After Effects expressions from user
+    //          prompts or AE files, powered by React, TypeScript, and FastAPI.
+    //          Features built-in expressions and AI integration to streamline
+    //          motion design workflows for creators.
+    //        </p>
+    //        <div>
+    //          <p className="font-semibold text-sm mb-2">Tech Stack:</p>
+    //          <p className="text-sm">React, TypeScript, OpenAPI, MongoDB</p>
+    //        </div>
+    //      </div>
+    //    ),
+    //  },
    ];
 
   return (
